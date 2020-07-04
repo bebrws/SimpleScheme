@@ -52,5 +52,53 @@
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "68B43985-98DB-4E44-BC35-D0D1CDEE6989"
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "SimpleScheme/ContentView.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "70"
+            endingLineNumber = "70"
+            landmarkName = "body"
+            landmarkType = "24">
+            <Locations>
+               <Location
+                  uuid = "68B43985-98DB-4E44-BC35-D0D1CDEE6989 - 7d4cc9a015c0c4d7"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "closure #1 () -&gt; () in SimpleScheme.InterpreterView.body.getter : some"
+                  moduleName = "SimpleScheme"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/bbarrows/repos/SimpleScheme/SimpleScheme/ContentView.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "71"
+                  endingLineNumber = "71"
+                  offsetFromSymbolStart = "50">
+               </Location>
+               <Location
+                  uuid = "68B43985-98DB-4E44-BC35-D0D1CDEE6989 - 49e77a6ab9955475"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "closure #1 (Swift.UnsafePointer&lt;Swift.Int8&gt;) -&gt; () in closure #1 () -&gt; () in SimpleScheme.InterpreterView.body.getter : some"
+                  moduleName = "SimpleScheme"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/bbarrows/repos/SimpleScheme/SimpleScheme/ContentView.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "72"
+                  endingLineNumber = "72"
+                  offsetFromSymbolStart = "67">
+               </Location>
+            </Locations>
+         </BreakpointContent>
+      </BreakpointProxy>
    </Breakpoints>
 </Bucket>

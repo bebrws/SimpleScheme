@@ -66,11 +66,14 @@ struct InterpreterView: SwiftUI.View {
     var body: some SwiftUI.View {
         Text("ASD").onTapGesture {
             
-            "(print 1)".withCString {
-                let result = scheme($0)
-                let string = String(cString: result!)
-                print("result:")
-                print(string)
+               """
+                (displayln 23)
+                23
+                """.withCString {
+               let result = scheme($0)
+               let string = String(cString: result!)
+               print("result:")
+               print(string)
             }
         }
     }
