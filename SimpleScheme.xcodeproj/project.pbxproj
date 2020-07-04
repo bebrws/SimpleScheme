@@ -3,7 +3,7 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 50;
+	objectVersion = 52;
 	objects = {
 
 /* Begin PBXBuildFile section */
@@ -12,7 +12,11 @@
 		B1BC1C7424B0E363008D0B4D /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1BC1C7324B0E363008D0B4D /* ContentView.swift */; };
 		B1BC1C7624B0E365008D0B4D /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = B1BC1C7524B0E365008D0B4D /* Assets.xcassets */; };
 		B1BC1C7924B0E365008D0B4D /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = B1BC1C7824B0E365008D0B4D /* Preview Assets.xcassets */; };
-		B1BC1C7C24B0E365008D0B4D /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B1BC1C7A24B0E365008D0B4D /* LaunchScreen.storyboard */; };
+		B1BC1C7C24B0E365008D0B4D /* Editor.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B1BC1C7A24B0E365008D0B4D /* Editor.storyboard */; };
+		B1BC1C8524B0E3E8008D0B4D /* Sourceful in Frameworks */ = {isa = PBXBuildFile; productRef = B1BC1C8424B0E3E8008D0B4D /* Sourceful */; };
+		B1BC1C8A24B0E9BD008D0B4D /* Editor.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B1BC1C8924B0E9BD008D0B4D /* Editor.storyboard */; };
+		B1BC1C9024B11CCF008D0B4D /* SimpleScheme-Bridging-Header.h in Sources */ = {isa = PBXBuildFile; fileRef = B1BC1C8F24B11CCF008D0B4D /* SimpleScheme-Bridging-Header.h */; };
+		B1BC1C9124B11ECC008D0B4D /* libscheme.a in Frameworks */ = {isa = PBXBuildFile; fileRef = B1BC1C8C24B11B29008D0B4D /* libscheme.a */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -22,8 +26,14 @@
 		B1BC1C7324B0E363008D0B4D /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
 		B1BC1C7524B0E365008D0B4D /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		B1BC1C7824B0E365008D0B4D /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
-		B1BC1C7B24B0E365008D0B4D /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
+		B1BC1C7B24B0E365008D0B4D /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Editor.storyboard; sourceTree = "<group>"; };
 		B1BC1C7D24B0E365008D0B4D /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		B1BC1C8924B0E9BD008D0B4D /* Editor.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Editor.storyboard; sourceTree = "<group>"; };
+		B1BC1C8C24B11B29008D0B4D /* libscheme.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libscheme.a; path = SimpleScheme/libscheme.a; sourceTree = "<group>"; };
+		B1BC1C8D24B11B46008D0B4D /* scheme.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = scheme.h; sourceTree = "<group>"; };
+		B1BC1C8E24B11B6A008D0B4D /* SimpleScheme-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "SimpleScheme-Bridging-Header.h"; sourceTree = "<group>"; };
+		B1BC1C8F24B11CCF008D0B4D /* SimpleScheme-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = "SimpleScheme-Bridging-Header.h"; path = "SimpleScheme/SimpleScheme-Bridging-Header.h"; sourceTree = "<group>"; };
+		B1BC1C9224B12310008D0B4D /* libscheme.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libscheme.dylib; path = SimpleScheme/libscheme.dylib; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -31,6 +41,8 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				B1BC1C9124B11ECC008D0B4D /* libscheme.a in Frameworks */,
+				B1BC1C8524B0E3E8008D0B4D /* Sourceful in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -40,8 +52,11 @@
 		B1BC1C6324B0E363008D0B4D = {
 			isa = PBXGroup;
 			children = (
+				B1BC1C8F24B11CCF008D0B4D /* SimpleScheme-Bridging-Header.h */,
+				B1BC1C8924B0E9BD008D0B4D /* Editor.storyboard */,
 				B1BC1C6E24B0E363008D0B4D /* SimpleScheme */,
 				B1BC1C6D24B0E363008D0B4D /* Products */,
+				B1BC1C8B24B11B29008D0B4D /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -56,13 +71,15 @@
 		B1BC1C6E24B0E363008D0B4D /* SimpleScheme */ = {
 			isa = PBXGroup;
 			children = (
+				B1BC1C8D24B11B46008D0B4D /* scheme.h */,
 				B1BC1C6F24B0E363008D0B4D /* AppDelegate.swift */,
 				B1BC1C7124B0E363008D0B4D /* SceneDelegate.swift */,
 				B1BC1C7324B0E363008D0B4D /* ContentView.swift */,
 				B1BC1C7524B0E365008D0B4D /* Assets.xcassets */,
-				B1BC1C7A24B0E365008D0B4D /* LaunchScreen.storyboard */,
+				B1BC1C7A24B0E365008D0B4D /* Editor.storyboard */,
 				B1BC1C7D24B0E365008D0B4D /* Info.plist */,
 				B1BC1C7724B0E365008D0B4D /* Preview Content */,
+				B1BC1C8E24B11B6A008D0B4D /* SimpleScheme-Bridging-Header.h */,
 			);
 			path = SimpleScheme;
 			sourceTree = "<group>";
@@ -73,6 +90,15 @@
 				B1BC1C7824B0E365008D0B4D /* Preview Assets.xcassets */,
 			);
 			path = "Preview Content";
+			sourceTree = "<group>";
+		};
+		B1BC1C8B24B11B29008D0B4D /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				B1BC1C9224B12310008D0B4D /* libscheme.dylib */,
+				B1BC1C8C24B11B29008D0B4D /* libscheme.a */,
+			);
+			name = Frameworks;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -91,6 +117,9 @@
 			dependencies = (
 			);
 			name = SimpleScheme;
+			packageProductDependencies = (
+				B1BC1C8424B0E3E8008D0B4D /* Sourceful */,
+			);
 			productName = SimpleScheme;
 			productReference = B1BC1C6C24B0E363008D0B4D /* SimpleScheme.app */;
 			productType = "com.apple.product-type.application";
@@ -119,6 +148,9 @@
 				Base,
 			);
 			mainGroup = B1BC1C6324B0E363008D0B4D;
+			packageReferences = (
+				B1BC1C8324B0E3E8008D0B4D /* XCRemoteSwiftPackageReference "Sourceful" */,
+			);
 			productRefGroup = B1BC1C6D24B0E363008D0B4D /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
@@ -133,9 +165,10 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				B1BC1C7C24B0E365008D0B4D /* LaunchScreen.storyboard in Resources */,
+				B1BC1C7C24B0E365008D0B4D /* Editor.storyboard in Resources */,
 				B1BC1C7924B0E365008D0B4D /* Preview Assets.xcassets in Resources */,
 				B1BC1C7624B0E365008D0B4D /* Assets.xcassets in Resources */,
+				B1BC1C8A24B0E9BD008D0B4D /* Editor.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -146,6 +179,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				B1BC1C9024B11CCF008D0B4D /* SimpleScheme-Bridging-Header.h in Sources */,
 				B1BC1C7024B0E363008D0B4D /* AppDelegate.swift in Sources */,
 				B1BC1C7224B0E363008D0B4D /* SceneDelegate.swift in Sources */,
 				B1BC1C7424B0E363008D0B4D /* ContentView.swift in Sources */,
@@ -155,12 +189,12 @@
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXVariantGroup section */
-		B1BC1C7A24B0E365008D0B4D /* LaunchScreen.storyboard */ = {
+		B1BC1C7A24B0E365008D0B4D /* Editor.storyboard */ = {
 			isa = PBXVariantGroup;
 			children = (
 				B1BC1C7B24B0E365008D0B4D /* Base */,
 			);
-			name = LaunchScreen.storyboard;
+			name = Editor.storyboard;
 			sourceTree = "<group>";
 		};
 /* End PBXVariantGroup section */
@@ -170,6 +204,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
+				ARCHS = "$(ARCHS_STANDARD)";
 				CLANG_ANALYZER_NONNULL = YES;
 				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
@@ -219,10 +254,11 @@
 				IPHONEOS_DEPLOYMENT_TARGET = 13.5;
 				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
 				MTL_FAST_MATH = YES;
-				ONLY_ACTIVE_ARCH = YES;
+				ONLY_ACTIVE_ARCH = NO;
 				SDKROOT = iphoneos;
 				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				VALID_ARCHS = "";
 			};
 			name = Debug;
 		};
@@ -230,6 +266,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
+				ARCHS = "$(ARCHS_STANDARD)";
 				CLANG_ANALYZER_NONNULL = YES;
 				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
@@ -277,44 +314,71 @@
 				SWIFT_COMPILATION_MODE = wholemodule;
 				SWIFT_OPTIMIZATION_LEVEL = "-O";
 				VALIDATE_PRODUCT = YES;
+				VALID_ARCHS = "";
 			};
 			name = Release;
 		};
 		B1BC1C8124B0E365008D0B4D /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				ARCHS = (
+					arm64,
+					x86_64,
+				);
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_ASSET_PATHS = "\"SimpleScheme/Preview Content\"";
+				DEVELOPMENT_TEAM = J224A9FKGZ;
+				ENABLE_BITCODE = NO;
 				ENABLE_PREVIEWS = YES;
 				INFOPLIST_FILE = SimpleScheme/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
+				LIBRARY_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/SimpleScheme",
+				);
+				ONLY_ACTIVE_ARCH = NO;
 				PRODUCT_BUNDLE_IDENTIFIER = com.bbarrows.SimpleScheme;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_OBJC_BRIDGING_HEADER = "$(PROJECT_DIR)/SimpleScheme/SimpleScheme-Bridging-Header.h";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
+				VALID_ARCHS = "arm64 x86_64";
 			};
 			name = Debug;
 		};
 		B1BC1C8224B0E365008D0B4D /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				ARCHS = (
+					arm64,
+					x86_64,
+				);
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_ASSET_PATHS = "\"SimpleScheme/Preview Content\"";
+				DEVELOPMENT_TEAM = J224A9FKGZ;
+				ENABLE_BITCODE = NO;
 				ENABLE_PREVIEWS = YES;
 				INFOPLIST_FILE = SimpleScheme/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
+				LIBRARY_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/SimpleScheme",
+				);
+				ONLY_ACTIVE_ARCH = NO;
 				PRODUCT_BUNDLE_IDENTIFIER = com.bbarrows.SimpleScheme;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_OBJC_BRIDGING_HEADER = "$(PROJECT_DIR)/SimpleScheme/SimpleScheme-Bridging-Header.h";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
+				VALID_ARCHS = "arm64 x86_64";
 			};
 			name = Release;
 		};
@@ -340,6 +404,25 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		B1BC1C8324B0E3E8008D0B4D /* XCRemoteSwiftPackageReference "Sourceful" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/twostraws/Sourceful";
+			requirement = {
+				kind = revision;
+				revision = aa87f034e6d6d6c8e5b5e7992d66805678b01fb1;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		B1BC1C8424B0E3E8008D0B4D /* Sourceful */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = B1BC1C8324B0E3E8008D0B4D /* XCRemoteSwiftPackageReference "Sourceful" */;
+			productName = Sourceful;
+		};
+/* End XCSwiftPackageProductDependency section */
 	};
 	rootObject = B1BC1C6424B0E363008D0B4D /* Project object */;
 }
