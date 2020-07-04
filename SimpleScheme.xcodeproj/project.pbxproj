@@ -17,6 +17,13 @@
 		B1BC1C8A24B0E9BD008D0B4D /* Editor.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B1BC1C8924B0E9BD008D0B4D /* Editor.storyboard */; };
 		B1BC1C9024B11CCF008D0B4D /* SimpleScheme-Bridging-Header.h in Sources */ = {isa = PBXBuildFile; fileRef = B1BC1C8F24B11CCF008D0B4D /* SimpleScheme-Bridging-Header.h */; };
 		B1BC1C9124B11ECC008D0B4D /* libscheme.a in Frameworks */ = {isa = PBXBuildFile; fileRef = B1BC1C8C24B11B29008D0B4D /* libscheme.a */; };
+		B1BC1C9B24B1305A008D0B4D /* DocumentDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1BC1C9424B13059008D0B4D /* DocumentDelegate.swift */; };
+		B1BC1C9C24B1305A008D0B4D /* DocumentCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1BC1C9524B13059008D0B4D /* DocumentCell.swift */; };
+		B1BC1C9E24B1305A008D0B4D /* Document.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1BC1C9724B13059008D0B4D /* Document.swift */; };
+		B1BC1C9F24B1305A008D0B4D /* Colors.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1BC1C9824B13059008D0B4D /* Colors.swift */; };
+		B1BC1CA024B1305A008D0B4D /* Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1BC1C9924B13059008D0B4D /* Extensions.swift */; };
+		B1BC1CA124B1305A008D0B4D /* DocumentPicker.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1BC1C9A24B13059008D0B4D /* DocumentPicker.swift */; };
+		B1BC1CA524B13330008D0B4D /* DockPicker.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B1BC1CA424B13330008D0B4D /* DockPicker.storyboard */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -33,7 +40,14 @@
 		B1BC1C8D24B11B46008D0B4D /* scheme.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = scheme.h; sourceTree = "<group>"; };
 		B1BC1C8E24B11B6A008D0B4D /* SimpleScheme-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "SimpleScheme-Bridging-Header.h"; sourceTree = "<group>"; };
 		B1BC1C8F24B11CCF008D0B4D /* SimpleScheme-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = "SimpleScheme-Bridging-Header.h"; path = "SimpleScheme/SimpleScheme-Bridging-Header.h"; sourceTree = "<group>"; };
-		B1BC1C9224B12310008D0B4D /* libscheme.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libscheme.dylib; path = SimpleScheme/libscheme.dylib; sourceTree = "<group>"; };
+		B1BC1C9424B13059008D0B4D /* DocumentDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = DocumentDelegate.swift; path = SimpleScheme/DockyPicker/DocumentDelegate.swift; sourceTree = "<group>"; };
+		B1BC1C9524B13059008D0B4D /* DocumentCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = DocumentCell.swift; path = SimpleScheme/DockyPicker/DocumentCell.swift; sourceTree = "<group>"; };
+		B1BC1C9724B13059008D0B4D /* Document.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = Document.swift; path = SimpleScheme/DockyPicker/Document.swift; sourceTree = "<group>"; };
+		B1BC1C9824B13059008D0B4D /* Colors.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = Colors.swift; path = SimpleScheme/DockyPicker/Colors.swift; sourceTree = "<group>"; };
+		B1BC1C9924B13059008D0B4D /* Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = Extensions.swift; path = SimpleScheme/DockyPicker/Extensions.swift; sourceTree = "<group>"; };
+		B1BC1C9A24B13059008D0B4D /* DocumentPicker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = DocumentPicker.swift; path = SimpleScheme/DockyPicker/DocumentPicker.swift; sourceTree = "<group>"; };
+		B1BC1CA424B13330008D0B4D /* DockPicker.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = DockPicker.storyboard; sourceTree = "<group>"; };
+		B1BC1CA624B13CF2008D0B4D /* SimpleScheme.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = SimpleScheme.entitlements; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -52,6 +66,13 @@
 		B1BC1C6324B0E363008D0B4D = {
 			isa = PBXGroup;
 			children = (
+				B1BC1CA424B13330008D0B4D /* DockPicker.storyboard */,
+				B1BC1C9824B13059008D0B4D /* Colors.swift */,
+				B1BC1C9724B13059008D0B4D /* Document.swift */,
+				B1BC1C9524B13059008D0B4D /* DocumentCell.swift */,
+				B1BC1C9424B13059008D0B4D /* DocumentDelegate.swift */,
+				B1BC1C9A24B13059008D0B4D /* DocumentPicker.swift */,
+				B1BC1C9924B13059008D0B4D /* Extensions.swift */,
 				B1BC1C8F24B11CCF008D0B4D /* SimpleScheme-Bridging-Header.h */,
 				B1BC1C8924B0E9BD008D0B4D /* Editor.storyboard */,
 				B1BC1C6E24B0E363008D0B4D /* SimpleScheme */,
@@ -71,6 +92,7 @@
 		B1BC1C6E24B0E363008D0B4D /* SimpleScheme */ = {
 			isa = PBXGroup;
 			children = (
+				B1BC1CA624B13CF2008D0B4D /* SimpleScheme.entitlements */,
 				B1BC1C8D24B11B46008D0B4D /* scheme.h */,
 				B1BC1C6F24B0E363008D0B4D /* AppDelegate.swift */,
 				B1BC1C7124B0E363008D0B4D /* SceneDelegate.swift */,
@@ -95,7 +117,6 @@
 		B1BC1C8B24B11B29008D0B4D /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
-				B1BC1C9224B12310008D0B4D /* libscheme.dylib */,
 				B1BC1C8C24B11B29008D0B4D /* libscheme.a */,
 			);
 			name = Frameworks;
@@ -166,6 +187,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				B1BC1C7C24B0E365008D0B4D /* Editor.storyboard in Resources */,
+				B1BC1CA524B13330008D0B4D /* DockPicker.storyboard in Resources */,
 				B1BC1C7924B0E365008D0B4D /* Preview Assets.xcassets in Resources */,
 				B1BC1C7624B0E365008D0B4D /* Assets.xcassets in Resources */,
 				B1BC1C8A24B0E9BD008D0B4D /* Editor.storyboard in Resources */,
@@ -179,6 +201,12 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				B1BC1C9B24B1305A008D0B4D /* DocumentDelegate.swift in Sources */,
+				B1BC1C9C24B1305A008D0B4D /* DocumentCell.swift in Sources */,
+				B1BC1C9E24B1305A008D0B4D /* Document.swift in Sources */,
+				B1BC1C9F24B1305A008D0B4D /* Colors.swift in Sources */,
+				B1BC1CA024B1305A008D0B4D /* Extensions.swift in Sources */,
+				B1BC1CA124B1305A008D0B4D /* DocumentPicker.swift in Sources */,
 				B1BC1C9024B11CCF008D0B4D /* SimpleScheme-Bridging-Header.h in Sources */,
 				B1BC1C7024B0E363008D0B4D /* AppDelegate.swift in Sources */,
 				B1BC1C7224B0E363008D0B4D /* SceneDelegate.swift in Sources */,
@@ -321,11 +349,9 @@
 		B1BC1C8124B0E365008D0B4D /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				ARCHS = (
-					arm64,
-					x86_64,
-				);
+				ARCHS = arm64;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_ENTITLEMENTS = SimpleScheme/SimpleScheme.entitlements;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_ASSET_PATHS = "\"SimpleScheme/Preview Content\"";
 				DEVELOPMENT_TEAM = J224A9FKGZ;
@@ -353,11 +379,9 @@
 		B1BC1C8224B0E365008D0B4D /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				ARCHS = (
-					arm64,
-					x86_64,
-				);
+				ARCHS = arm64;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_ENTITLEMENTS = SimpleScheme/SimpleScheme.entitlements;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_ASSET_PATHS = "\"SimpleScheme/Preview Content\"";
 				DEVELOPMENT_TEAM = J224A9FKGZ;
