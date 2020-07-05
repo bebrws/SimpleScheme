@@ -7,6 +7,10 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		B159596824B19DF900A4A5AA /* DocPickerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B159596724B19DF900A4A5AA /* DocPickerView.swift */; };
+		B159596A24B19E1700A4A5AA /* EditorView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B159596924B19E1700A4A5AA /* EditorView.swift */; };
+		B159596C24B19E5C00A4A5AA /* FileWriterView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B159596B24B19E5C00A4A5AA /* FileWriterView.swift */; };
+		B159596E24B19E6D00A4A5AA /* FileOpenerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B159596D24B19E6D00A4A5AA /* FileOpenerView.swift */; };
 		B1BC1C7024B0E363008D0B4D /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1BC1C6F24B0E363008D0B4D /* AppDelegate.swift */; };
 		B1BC1C7224B0E363008D0B4D /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1BC1C7124B0E363008D0B4D /* SceneDelegate.swift */; };
 		B1BC1C7424B0E363008D0B4D /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1BC1C7324B0E363008D0B4D /* ContentView.swift */; };
@@ -24,9 +28,14 @@
 		B1BC1CA024B1305A008D0B4D /* Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1BC1C9924B13059008D0B4D /* Extensions.swift */; };
 		B1BC1CA124B1305A008D0B4D /* DocumentPicker.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1BC1C9A24B13059008D0B4D /* DocumentPicker.swift */; };
 		B1BC1CA524B13330008D0B4D /* DockPicker.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B1BC1CA424B13330008D0B4D /* DockPicker.storyboard */; };
+		B1BC1CA824B150D5008D0B4D /* CloudKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B1BC1CA724B150D5008D0B4D /* CloudKit.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		B159596724B19DF900A4A5AA /* DocPickerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DocPickerView.swift; sourceTree = "<group>"; };
+		B159596924B19E1700A4A5AA /* EditorView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditorView.swift; sourceTree = "<group>"; };
+		B159596B24B19E5C00A4A5AA /* FileWriterView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FileWriterView.swift; sourceTree = "<group>"; };
+		B159596D24B19E6D00A4A5AA /* FileOpenerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FileOpenerView.swift; sourceTree = "<group>"; };
 		B1BC1C6C24B0E363008D0B4D /* SimpleScheme.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SimpleScheme.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		B1BC1C6F24B0E363008D0B4D /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		B1BC1C7124B0E363008D0B4D /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -48,6 +57,7 @@
 		B1BC1C9A24B13059008D0B4D /* DocumentPicker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = DocumentPicker.swift; path = SimpleScheme/DockyPicker/DocumentPicker.swift; sourceTree = "<group>"; };
 		B1BC1CA424B13330008D0B4D /* DockPicker.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = DockPicker.storyboard; sourceTree = "<group>"; };
 		B1BC1CA624B13CF2008D0B4D /* SimpleScheme.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = SimpleScheme.entitlements; sourceTree = "<group>"; };
+		B1BC1CA724B150D5008D0B4D /* CloudKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CloudKit.framework; path = System/Library/Frameworks/CloudKit.framework; sourceTree = SDKROOT; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -55,6 +65,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				B1BC1CA824B150D5008D0B4D /* CloudKit.framework in Frameworks */,
 				B1BC1C9124B11ECC008D0B4D /* libscheme.a in Frameworks */,
 				B1BC1C8524B0E3E8008D0B4D /* Sourceful in Frameworks */,
 			);
@@ -66,6 +77,10 @@
 		B1BC1C6324B0E363008D0B4D = {
 			isa = PBXGroup;
 			children = (
+				B159596724B19DF900A4A5AA /* DocPickerView.swift */,
+				B159596924B19E1700A4A5AA /* EditorView.swift */,
+				B159596B24B19E5C00A4A5AA /* FileWriterView.swift */,
+				B159596D24B19E6D00A4A5AA /* FileOpenerView.swift */,
 				B1BC1CA424B13330008D0B4D /* DockPicker.storyboard */,
 				B1BC1C9824B13059008D0B4D /* Colors.swift */,
 				B1BC1C9724B13059008D0B4D /* Document.swift */,
@@ -117,6 +132,7 @@
 		B1BC1C8B24B11B29008D0B4D /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				B1BC1CA724B150D5008D0B4D /* CloudKit.framework */,
 				B1BC1C8C24B11B29008D0B4D /* libscheme.a */,
 			);
 			name = Frameworks;
@@ -202,13 +218,17 @@
 			buildActionMask = 2147483647;
 			files = (
 				B1BC1C9B24B1305A008D0B4D /* DocumentDelegate.swift in Sources */,
+				B159596824B19DF900A4A5AA /* DocPickerView.swift in Sources */,
 				B1BC1C9C24B1305A008D0B4D /* DocumentCell.swift in Sources */,
 				B1BC1C9E24B1305A008D0B4D /* Document.swift in Sources */,
 				B1BC1C9F24B1305A008D0B4D /* Colors.swift in Sources */,
 				B1BC1CA024B1305A008D0B4D /* Extensions.swift in Sources */,
 				B1BC1CA124B1305A008D0B4D /* DocumentPicker.swift in Sources */,
+				B159596E24B19E6D00A4A5AA /* FileOpenerView.swift in Sources */,
 				B1BC1C9024B11CCF008D0B4D /* SimpleScheme-Bridging-Header.h in Sources */,
+				B159596C24B19E5C00A4A5AA /* FileWriterView.swift in Sources */,
 				B1BC1C7024B0E363008D0B4D /* AppDelegate.swift in Sources */,
+				B159596A24B19E1700A4A5AA /* EditorView.swift in Sources */,
 				B1BC1C7224B0E363008D0B4D /* SceneDelegate.swift in Sources */,
 				B1BC1C7424B0E363008D0B4D /* ContentView.swift in Sources */,
 			);
