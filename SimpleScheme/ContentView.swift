@@ -94,7 +94,6 @@ struct DirectoryPopover: SwiftUI.View {
                 var newDirString = newDirFullPath.absoluteString
                 newDirString = newDirString.replacingOccurrences(of: "file://", with: "")
                     
-                let dataPath = newDirFullPath
                 if !FileManager.default.fileExists(atPath: newDirString) {
                     do {
                         try FileManager.default.createDirectory(atPath: newDirString, withIntermediateDirectories: true, attributes: nil)
@@ -122,11 +121,7 @@ struct FilePopover: SwiftUI.View {
                 var fileString = newFileFullPath.absoluteString
                 fileString = fileString.replacingOccurrences(of: "file://", with: "")
                 if !FileManager.default.fileExists(atPath: fileString) {
-                    do {
-                        try FileManager.default.createFile(atPath: fileString, contents: "".data(using: .utf8), attributes: nil)
-                    } catch {
-                        print(error.localizedDescription);
-                    }
+                    FileManager.default.createFile(atPath: fileString, contents: "".data(using: .utf8), attributes: nil)
                 }
 
             }) {
@@ -170,6 +165,7 @@ struct ListFilesView: SwiftUI.View {
             
         }
 //        .environment(\.editMode, .constant(self.isEditing ? EditMode.active : EditMode.inactive)).animation(Animation.spring())
+        
         .popover(
             isPresented: self.$showPopover,
             arrowEdge: .bottom
