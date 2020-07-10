@@ -88,22 +88,29 @@ struct DirectoryPopover: SwiftUI.View {
     @State private var newDirectoryName: String = ""
     var body: some SwiftUI.View {
         VStack {
-            TextField("Enter the directory name", text: self.$newDirectoryName)
-            Button(action: {
-                let newDirFullPath = self.settings.currentDir.appendingPathComponent(self.newDirectoryName)
-                var newDirString = newDirFullPath.absoluteString
-                newDirString = newDirString.replacingOccurrences(of: "file://", with: "")
-                    
-                if !FileManager.default.fileExists(atPath: newDirString) {
-                    do {
-                        try FileManager.default.createDirectory(atPath: newDirString, withIntermediateDirectories: true, attributes: nil)
-                    } catch {
-                        print(error.localizedDescription);
+            Text("Director Creation")
+            HStack {
+                VStack {
+                    TextField("Enter the directory name", text: self.$newDirectoryName)
+                }.padding(20)
+                VStack {
+                    Button(action: {
+                        let newDirFullPath = self.settings.currentDir.appendingPathComponent(self.newDirectoryName)
+                        var newDirString = newDirFullPath.absoluteString
+                        newDirString = newDirString.replacingOccurrences(of: "file://", with: "")
+                            
+                        if !FileManager.default.fileExists(atPath: newDirString) {
+                            do {
+                                try FileManager.default.createDirectory(atPath: newDirString, withIntermediateDirectories: true, attributes: nil)
+                            } catch {
+                                print(error.localizedDescription);
+                            }
+                        }
+                        
+                    }) {
+                        Text("Create Directory")
                     }
-                }
-                
-            }) {
-                Text("Create Directory")
+                }.padding(20)
             }
         }
     }
@@ -115,17 +122,24 @@ struct FilePopover: SwiftUI.View {
     @State private var newFileName: String = ""
     var body: some SwiftUI.View {
         VStack {
-            TextField("Enter the file name", text: self.$newFileName)
-            Button(action: {
-                let newFileFullPath = self.settings.currentDir.appendingPathComponent(self.newFileName)
-                var fileString = newFileFullPath.absoluteString
-                fileString = fileString.replacingOccurrences(of: "file://", with: "")
-                if !FileManager.default.fileExists(atPath: fileString) {
-                    FileManager.default.createFile(atPath: fileString, contents: "".data(using: .utf8), attributes: nil)
-                }
+            Text("File Creation")
+            HStack {
+                VStack {
+                    TextField("Enter the file name", text: self.$newFileName)
+                }.padding(20)
+                VStack {
+                    Button(action: {
+                        let newFileFullPath = self.settings.currentDir.appendingPathComponent(self.newFileName)
+                        var fileString = newFileFullPath.absoluteString
+                        fileString = fileString.replacingOccurrences(of: "file://", with: "")
+                        if !FileManager.default.fileExists(atPath: fileString) {
+                            FileManager.default.createFile(atPath: fileString, contents: "".data(using: .utf8), attributes: nil)
+                        }
 
-            }) {
-                Text("Create File")
+                    }) {
+                        Text("Create File")
+                    }
+                }.padding(20)
             }
         }
     }
@@ -172,13 +186,11 @@ struct ListFilesView: SwiftUI.View {
         ) {
             if (self.showNewFilePopover) {
                 FilePopover(settings: self.settings).onDisappear {
-                    print("onDisappear")
                     self.showNewFilePopover.toggle()
                     self.showPopover = false
                 }
             } else {
                 DirectoryPopover(settings: self.settings).onDisappear {
-                    print("onDisappear")
                     self.showNewDirectoryPopover.toggle()
                     self.showPopover = false
                 }
