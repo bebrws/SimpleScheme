@@ -203,7 +203,6 @@ struct FilesView: SwiftUI.View {
         NavigationView {
             ListFilesView(settings: self.settings, setEditorView: setEditorView).navigationBarTitle(Text("Files"), displayMode: .inline)
         }
-//        ListFilesView(settings: self.settings, setEditorView: setEditorView)
         .onAppear {
             let paths = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask)
             let documentsDirectory = paths[0]
@@ -289,28 +288,6 @@ struct ContentView: SwiftUI.View {
             }.tag(1)
         }
     }
-//    var body: some View {
-//        TabView(selection: $selection){
-//            Text("First View")
-//                .font(.title)
-//                .tabItem {
-//                    VStack {
-//                        Image("first")
-//                        Text("First")
-//                    }
-//                }
-//                .tag(0)
-//            Text("Second View")
-//                .font(.title)
-//                .tabItem {
-//                    VStack {
-//                        Image("second")
-//                        Text("Second")
-//                    }
-//                }
-//                .tag(1)
-//        }
-//    }
 }
 
 struct ContentView_Previews: PreviewProvider {
