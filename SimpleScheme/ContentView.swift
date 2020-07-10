@@ -160,7 +160,6 @@ struct ListFilesView: SwiftUI.View {
             :
                 Button(action: {
                     self.settings.currentFile = file
-                    self.settings.openedFiles = [file]
                     self.setEditorView()
                 }) {
                     HStack {
@@ -238,14 +237,6 @@ class UserSettings: ObservableObject {
     private let fileManager = FileManager.default
     let objectWillChange = ObservableObjectPublisher()
     @Published var files = [FVFile]() {
-        didSet {
-            objectWillChange.send()
-        }
-        willSet {
-            objectWillChange.send()
-        }
-    }
-    @Published var openedFiles = [FVFile]() {
         didSet {
             objectWillChange.send()
         }
