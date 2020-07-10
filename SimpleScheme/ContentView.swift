@@ -98,26 +98,26 @@ struct ListFilesView: SwiftUI.View {
     var body: some SwiftUI.View {
         VStack {
             List(settings.files, id: \.self, selection: $selection) { file in
-                    file.isDirectory ?
-                        Button(action: {
-                            self.settings.currentDir = file.filePathURL
-                        }) {
-                            HStack {
-                                Image(systemName: "folder")
-                                Text(file.displayName)
-                            }
+                file.isDirectory ?
+                    Button(action: {
+                        self.settings.currentDir = file.filePathURL
+                    }) {
+                        HStack {
+                            Image(systemName: "folder")
+                            Text(file.displayName)
                         }
-                    :
-                        Button(action: {
-                            self.settings.currentFile = file
-                            self.settings.openedFiles = [file]
-                            self.setEditorView()
-                        }) {
-                            HStack {
-                                Image(systemName: "pencil")
-                                Text(file.displayName)
-                            }
+                    }
+                :
+                    Button(action: {
+                        self.settings.currentFile = file
+                        self.settings.openedFiles = [file]
+                        self.setEditorView()
+                    }) {
+                        HStack {
+                            Image(systemName: "pencil")
+                            Text(file.displayName)
                         }
+                    }
                 
             }
             .environment(\.editMode, .constant(self.isEditing ? EditMode.active : EditMode.inactive)).animation(Animation.spring())
