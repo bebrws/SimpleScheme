@@ -88,16 +88,16 @@ struct ListFilesView: SwiftUI.View {
         @State private var files: [FVFile] = []
         @ObservedObject var settings: UserSettings
         var setEditorView: () -> Void
-        @State var isEditMode: EditMode = .inactive
+        @State var isEditing = false
         @State private var showNewDirectorySheet = false
         @State private var showNewFileSheet = false
         @State private var newDirectoryName: String = ""
         @State private var newFileName: String = ""
+        @State var selection = Set<String>()
     
     var body: some SwiftUI.View {
         VStack {
-            List {
-                ForEach(settings.files, id: \.self) { file in
+            List(settings.files, id: \.self, selection: $selection) { file in
                     file.isDirectory ?
                         Button(action: {
                             self.settings.currentDir = file.filePathURL
@@ -118,8 +118,9 @@ struct ListFilesView: SwiftUI.View {
                                 Text(file.displayName)
                             }
                         }
-                }
+                
             }
+            .environment(\.editMode, .constant(self.isEditing ? EditMode.active : EditMode.inactive)).animation(Animation.spring())
         }
         .popover(
             isPresented: self.$showNewDirectorySheet,
@@ -176,23 +177,24 @@ struct ListFilesView: SwiftUI.View {
                 Button(action: {
                     self.showNewDirectorySheet = true
             }) {
-                HStack {
-                    Image(systemName: "folder.badge.plus")
-                }
+                Image(systemName: "folder.badge.plus")
             }
-            EditButton()
         },
         trailing: HStack {
                 Button(action: {
                     self.showNewFileSheet = true
             }) {
+                Image(systemName: "plus.square")
+            }
+            Button(action: {
+                self.isEditing.toggle()
+            }) {
                 HStack {
-                    Image(systemName: "plus.square")
+                    Text(isEditing ? "Done" : "Edit")
+                    Image(systemName: "pencil")
                 }
             }
-            EditButton()
         })
-        .environment(\.editMode, self.$isEditMode)
     }
 }
 
