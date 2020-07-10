@@ -27,17 +27,6 @@ public class FVFile: NSObject {
 
         var isDirectory = false
         
-//        var dstat = stat()
-//        let filePathString = self.filePath.absoluteString?.replacingOccurrences(of: "file://", with: "")
-//        filePathString?.withCString { pointer in
-//            stat(pointer, &dstat)
-//        }
-//
-//
-//        if (    (dstat.st_mode)) {
-//            isDirectory = true
-//        }
-        
         var filePathString = self.filePath.absoluteString
         filePathString = filePathString!.replacingOccurrences(of: "file://", with: "")
         var isDir : ObjCBool = false
@@ -47,16 +36,6 @@ public class FVFile: NSObject {
                 isDirectory = true
             }
         }
-        
-      
-//        do {
-//            var resourceValue: AnyObject?
-//            try filePath.getResourceValue(&resourceValue, forKey: URLResourceKey.isDirectoryKey)
-//            if let number = resourceValue as? NSNumber, number == true {
-//                isDirectory = true
-//            }
-//        }
-//        catch { }
     
         filePathURL = filePath.absoluteURL!
         
@@ -67,9 +46,6 @@ public class FVFile: NSObject {
             self.type           = .Directory
         }
         else {
-//            let d = try! Data(contentsOf: self.filePath as URL)
-//            let s = String(data: d, encoding: .utf8)
-            
             self.fileExtension = self.filePath.pathExtension
             
             self.type = .Default
@@ -108,12 +84,6 @@ public enum FVFileType: String {
 }
 
 
-struct CreateFileView: SwiftUI.View {
-    @State private var selection = 0
-    var body: some SwiftUI.View {
-        Text("clickToCreate")
-    }
-}
 struct ListFilesView: SwiftUI.View {
         @State private var files: [FVFile] = []
         @ObservedObject var settings: UserSettings
@@ -194,7 +164,6 @@ struct ListFilesView: SwiftUI.View {
                             print(error.localizedDescription);
                         }
                     }
-                    print("Created file")
 
                 }) {
                     Text("Create File")
@@ -205,7 +174,6 @@ struct ListFilesView: SwiftUI.View {
         .navigationBarItems(leading:
         HStack {
                 Button(action: {
-                print("newdir")
                     self.showNewDirectorySheet = true
             }) {
                 HStack {
@@ -216,7 +184,6 @@ struct ListFilesView: SwiftUI.View {
         },
         trailing: HStack {
                 Button(action: {
-                print("newfile")
                     self.showNewFileSheet = true
             }) {
                 HStack {
