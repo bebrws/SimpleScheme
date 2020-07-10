@@ -12,6 +12,9 @@ import Sourceful
 
 
 class EditorViewController: UIViewController, SyntaxTextViewDelegate {
+    
+    let fileBeingEdited:FVFile? = nil
+    
     func lexerForSource(_ source: String) -> Lexer {
         return lexer
     }
@@ -26,6 +29,7 @@ class EditorViewController: UIViewController, SyntaxTextViewDelegate {
         editorView.theme = DefaultSourceCodeTheme()
         editorView.delegate = self
         
+        
         self.view.addSubview(editorView)
 
         editorView.translatesAutoresizingMaskIntoConstraints = false
@@ -37,17 +41,35 @@ class EditorViewController: UIViewController, SyntaxTextViewDelegate {
         super.viewWillAppear(animated)
     }
     
+    func updateSettings(settings: UserSettings) {
+        if (self.fileBeingEdited == settings.currentFile) {
+            // No change
+        } else {
+            // File changed so re load data
+            let fileDataContents = try! Data(contentsOf: settings.currentFile!.filePath as URL)
+            let fileContentsString = String(data: fileDataContents, encoding: .utf8)
+            self.editorView.text = fileContentsString!
+                        
+        }
+    }
+    
     required init?(coder: NSCoder) {
         super.init(coder: coder)
+    }
+    
+    convenience init?(coder: NSCoder, settings: UserSettings) {
+        self.init(coder: coder)
     }
 }
 
 struct EditorView: UIViewControllerRepresentable {
+    @ObservedObject var settings: UserSettings
+    
 func makeUIViewController(context: Context) -> EditorViewController {
     let storyboard = UIStoryboard(name: "Editor", bundle: nil)
 
     let viewController = storyboard.instantiateViewController(identifier: "Editor", creator: { (coder) in
-    let editorViewController = EditorViewController(coder: coder)
+        let editorViewController = EditorViewController(coder: coder, settings: self.settings)
     return editorViewController
     }) as! EditorViewController
     
@@ -56,6 +78,7 @@ func makeUIViewController(context: Context) -> EditorViewController {
     
     func updateUIViewController(_ uiViewController: EditorViewController, context: Context) {
         let e = uiViewController as EditorViewController
+        e.updateSettings(settings: settings)
     }
 
 }

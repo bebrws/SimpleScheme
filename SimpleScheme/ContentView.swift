@@ -9,30 +9,317 @@
 import SwiftUI
 import MobileCoreServices
 import Sourceful
+import Combine
+
+/// FBFile represents a file in FileBrowser
+public class FVFile: NSObject {
+    public var displayName: String
+    public var isDirectory: Bool
+    public let fileExtension: String?
+    public let fileName: String
+    public let filePath: NSURL
+    public let filePathURL: URL
+    public let type: FVFileType
+    
+    
+    init(filePath: NSURL) {
+        self.filePath    = filePath
+
+        var isDirectory = false
+        
+//        var dstat = stat()
+//        let filePathString = self.filePath.absoluteString?.replacingOccurrences(of: "file://", with: "")
+//        filePathString?.withCString { pointer in
+//            stat(pointer, &dstat)
+//        }
+//
+//
+//        if (    (dstat.st_mode)) {
+//            isDirectory = true
+//        }
+        
+        var filePathString = self.filePath.absoluteString
+        filePathString = filePathString!.replacingOccurrences(of: "file://", with: "")
+        var isDir : ObjCBool = false
+        let fileManager = FileManager.default
+        if fileManager.fileExists(atPath: filePathString!, isDirectory:&isDir) {
+            if (isDir.boolValue) {
+                isDirectory = true
+            }
+        }
+        
+      
+//        do {
+//            var resourceValue: AnyObject?
+//            try filePath.getResourceValue(&resourceValue, forKey: URLResourceKey.isDirectoryKey)
+//            if let number = resourceValue as? NSNumber, number == true {
+//                isDirectory = true
+//            }
+//        }
+//        catch { }
+    
+        filePathURL = filePath.absoluteURL!
+        
+        self.isDirectory = isDirectory
+        
+        if self.isDirectory {
+            self.fileExtension  = nil
+            self.type           = .Directory
+        }
+        else {
+//            let d = try! Data(contentsOf: self.filePath as URL)
+//            let s = String(data: d, encoding: .utf8)
+            
+            self.fileExtension = self.filePath.pathExtension
+            
+            self.type = .Default
+        }
+        self.fileName = self.filePath.lastPathComponent!
+        self.displayName = filePath.lastPathComponent ?? String()
+
+    }
+}
+
+public enum FVFileType: String {
+    case Default   = "file"
+    case Directory = "directory"
+    case PLIST     = "plist"
+    case PNG       = "png"
+    case ZIP       = "zip"
+    case GIF       = "gif"
+    case JPG       = "jpg"
+    case JSON      = "json"
+    case PDF       = "pdf"
+    
+    public func image() -> UIImage? {
+        
+//        var fileName = String()
+//        switch self {
+//        case Directory: fileName = "folder@2x.png"
+//        case JPG, PNG, GIF: fileName = "image@2x.png"
+//        case PDF: fileName = "pdf@2x.png"
+//        case ZIP: fileName = "zip@2x.png"
+//        default: fileName = "file@2x.png"
+//        }
+//        let file = UIImage(named: fileName, inBundle: bundle, compatibleWithTraitCollection: nil)
+//        return file
+        return UIImage()
+    }
+}
 
 
+struct CreateFileView: SwiftUI.View {
+    @State private var selection = 0
+    var body: some SwiftUI.View {
+        Text("clickToCreate")
+    }
+}
+struct ListFilesView: SwiftUI.View {
+        @State private var files: [FVFile] = []
+        @ObservedObject var settings: UserSettings
+        var setEditorView: () -> Void
+        @State var isEditMode: EditMode = .inactive
+        @State private var showNewDirectorySheet = false
+        @State private var showNewFileSheet = false
+        @State private var newDirectoryName: String = ""
+        @State private var newFileName: String = ""
+    
+    var body: some SwiftUI.View {
+        VStack {
+            List {
+                ForEach(settings.files, id: \.self) { file in
+                    file.isDirectory ?
+                        Button(action: {
+                            self.settings.currentDir = file.filePathURL
+                        }) {
+                            HStack {
+                                Image(systemName: "folder")
+                                Text(file.displayName)
+                            }
+                        }
+                    :
+                        Button(action: {
+                            self.settings.currentFile = file
+                            self.settings.openedFiles = [file]
+                            self.setEditorView()
+                        }) {
+                            HStack {
+                                Image(systemName: "pencil")
+                                Text(file.displayName)
+                            }
+                        }
+                }
+            }
+        }
+        .popover(
+            isPresented: self.$showNewDirectorySheet,
+            arrowEdge: .bottom
+        ) {
+            VStack {
+                TextField("Enter the directory name", text: self.$newDirectoryName)
+                Button(action: {
+                    let newDirFullPath = self.settings.currentDir.appendingPathComponent(self.newDirectoryName)
+                    var newDirString = newDirFullPath.absoluteString
+                    newDirString = newDirString.replacingOccurrences(of: "file://", with: "")
+                        
+                    let dataPath = newDirFullPath
+                    if !FileManager.default.fileExists(atPath: newDirString) {
+                        do {
+                            try FileManager.default.createDirectory(atPath: newDirString, withIntermediateDirectories: true, attributes: nil)
+                        } catch {
+                            print(error.localizedDescription);
+                        }
+                    }
+                    
+                }) {
+                    Text("Create Directory")
+                }
+            }
+            
+        }
+        .popover(
+            isPresented: self.$showNewFileSheet,
+            arrowEdge: .bottom
+        ) {
+            VStack {
+                TextField("Enter the file name", text: self.$newFileName)
+                Button(action: {
+                    let newFileFullPath = self.settings.currentDir.appendingPathComponent(self.newFileName)
+                    var fileString = newFileFullPath.absoluteString
+                    fileString = fileString.replacingOccurrences(of: "file://", with: "")
+                    if !FileManager.default.fileExists(atPath: fileString) {
+                        do {
+                            try FileManager.default.createFile(atPath: fileString, contents: "".data(using: .utf8), attributes: nil)
+                        } catch {
+                            print(error.localizedDescription);
+                        }
+                    }
+                    print("Created file")
 
+                }) {
+                    Text("Create File")
+                }
+            }
 
+        }
+        .navigationBarItems(leading:
+        HStack {
+                Button(action: {
+                print("newdir")
+                    self.showNewDirectorySheet = true
+            }) {
+                HStack {
+                    Image(systemName: "folder.badge.plus")
+                }
+            }
+            EditButton()
+        },
+        trailing: HStack {
+                Button(action: {
+                print("newfile")
+                    self.showNewFileSheet = true
+            }) {
+                HStack {
+                    Image(systemName: "plus.square")
+                }
+            }
+            EditButton()
+        })
+        .environment(\.editMode, self.$isEditMode)
+    }
+}
+
+struct FilesView: SwiftUI.View {
+    @ObservedObject var settings: UserSettings
+    var setEditorView: () -> Void
+    var body: some SwiftUI.View {
+        NavigationView {
+            ListFilesView(settings: self.settings, setEditorView: setEditorView).navigationBarTitle(Text("Files"), displayMode: .inline)
+        }
+//        ListFilesView(settings: self.settings, setEditorView: setEditorView)
+        .onAppear {
+            let paths = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask)
+            let documentsDirectory = paths[0]
+            self.settings.currentDir = documentsDirectory
+        }
+    }
+}
+
+class UserSettings: ObservableObject {
+    @Published var currentFile: FVFile? = nil
+    private let fileManager = FileManager.default
+    let objectWillChange = ObservableObjectPublisher()
+    @Published var files = [FVFile]() {
+        didSet {
+            objectWillChange.send()
+        }
+        willSet {
+            objectWillChange.send()
+        }
+    }
+    @Published var openedFiles = [FVFile]() {
+        didSet {
+            objectWillChange.send()
+        }
+        willSet {
+            objectWillChange.send()
+        }
+    }
+    @Published var currentDir: URL = URL(string: "./")! {
+        didSet {
+            self.files = []
+            
+            let paths = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask)
+            let documentsDirectory = paths[0]
+            
+            if (self.currentDir.standardizedFileURL != documentsDirectory.standardizedFileURL) {
+                var downOneURL = self.currentDir
+                downOneURL.appendPathComponent("..")
+                downOneURL = downOneURL.standardizedFileURL
+                let backPath = FVFile(filePath: downOneURL as NSURL)
+                backPath.isDirectory = true
+                backPath.displayName = ".."
+                self.files = [backPath]
+            }
+            
+            let filePaths = try! self.fileManager.contentsOfDirectory(at: self.currentDir, includingPropertiesForKeys: [], options: [])
+            
+            for filePath in filePaths {
+                let file = FVFile(filePath: filePath as NSURL)
+                if !file.displayName.isEmpty {
+                    self.files.append(file)
+                }
+            }
+            
+            var dirs = self.files.filter { $0.isDirectory }
+            self.files = self.files.filter { !$0.isDirectory }
+            dirs.sort(by: {$0.displayName < $1.displayName})
+
+            self.files.sort(by: {$0.displayName < $1.displayName})
+            
+            var sorted:[FVFile] = [FVFile]()
+            sorted.append(contentsOf: dirs)
+            sorted.append(contentsOf: self.files)
+            self.files = sorted
+        }
+    }
+}
 
 
 struct ContentView: SwiftUI.View {
     @State private var selection = 0
- 
+    @State private var settings:UserSettings = UserSettings()
+    @State private var selectedTab = 1
     var body: some SwiftUI.View {
-        TabView {
-            EditorView().tabItem {
+        TabView(selection: $selectedTab) {
+            EditorView(settings: settings).tabItem {
                 Image(systemName: "list.dash")
-                Text("Editor")
-            }
-      
-            FileOpenerView().tabItem {
+                Text("Editor" + ((settings.currentFile != nil) ? (" - " + settings.currentFile!.displayName) : ""))
+            }.tag(0)
+            FilesView(settings: settings, setEditorView: { self.selectedTab = 0 }).tabItem {
                 Image(systemName: "list.dash")
-                Text("DockPicker")
-            }
-            FileWriterView().tabItem {
-                Image(systemName: "list.dash")
-                Text("Fopen")
-            }
+                Text("Files")
+            }.tag(1)
         }
     }
 //    var body: some View {
