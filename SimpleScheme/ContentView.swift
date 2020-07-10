@@ -96,7 +96,7 @@ struct ListFilesView: SwiftUI.View {
         @State var selection = Set<String>()
     
     var body: some SwiftUI.View {
-        VStack {
+        
             List(settings.files, id: \.self, selection: $selection) { file in
                 file.isDirectory ?
                     Button(action: {
@@ -121,7 +121,7 @@ struct ListFilesView: SwiftUI.View {
                 
             }
             .environment(\.editMode, .constant(self.isEditing ? EditMode.active : EditMode.inactive)).animation(Animation.spring())
-        }
+        
         .popover(
             isPresented: self.$showNewDirectorySheet,
             arrowEdge: .bottom
