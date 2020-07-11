@@ -199,17 +199,17 @@ struct ListFilesView: SwiftUI.View {
         
         .navigationBarItems(leading:
         HStack {
-                Button(action: {
-                    self.showNewDirectoryPopover = true
-                    self.showPopover = true
+            Button(action: {
+                self.showNewDirectoryPopover = true
+                self.showPopover = true
             }) {
                 Image(systemName: "folder.badge.plus")
             }
         },
         trailing: HStack {
-                Button(action: {
-                    self.showNewFilePopover = true
-                    self.showPopover = true
+            Button(action: {
+                self.showNewFilePopover = true
+                self.showPopover = true
             }) {
                 Image(systemName: "plus.square")
             }
@@ -292,6 +292,25 @@ class UserSettings: ObservableObject {
     }
 }
 
+struct FullEditorView: SwiftUI.View {
+    @State var settings:UserSettings
+    var body: some SwiftUI.View {
+        VStack {
+            HStack {
+                Button(action: {
+                    
+                }) {
+                    HStack {
+                        Image(systemName: "play")
+                        Text("Run")
+                    }
+                }
+            }
+            EditorView(settings: settings)
+        }
+    }
+}
+
 
 struct ContentView: SwiftUI.View {
     @State private var selection = 0
@@ -299,7 +318,7 @@ struct ContentView: SwiftUI.View {
     @State private var selectedTab = 1
     var body: some SwiftUI.View {
         TabView(selection: $selectedTab) {
-            EditorView(settings: settings).tabItem {
+            FullEditorView(settings: settings).tabItem {
                 Image(systemName: "list.dash")
                 Text("Editor" + ((settings.currentFile != nil) ? (" - " + settings.currentFile!.displayName) : ""))
             }.tag(0)
