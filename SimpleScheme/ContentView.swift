@@ -325,10 +325,7 @@ struct FullEditorView: SwiftUI.View {
                         print(error.localizedDescription)
                     }
                     
-                    // https://stackoverflow.com/questions/16391279/how-to-redirect-stdout-to-a-nstextview
-                    
                     // Before execution pipe stdout
-
                     //    Clear the pre existing console output
                     self.settings.consoleOutput = ""
                     
@@ -347,7 +344,6 @@ struct FullEditorView: SwiftUI.View {
                     }
                     
                     // Execute the scheme script
-                    
                     self.settings.currentFileContents.withCString { cstr in
                         scheme(cstr)
                     }
