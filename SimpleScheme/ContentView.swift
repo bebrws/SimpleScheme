@@ -295,7 +295,7 @@ class UserSettings: ObservableObject {
 struct FullEditorView: SwiftUI.View {
     @State var settings:UserSettings
     var body: some SwiftUI.View {
-        VStack {
+        VStack(alignment: .leading, spacing: 5.0) {
             HStack {
                 Button(action: {
                     
@@ -305,7 +305,7 @@ struct FullEditorView: SwiftUI.View {
                         Text("Run")
                     }
                 }
-            }
+            }.padding(.leading, 20.0)
             EditorView(settings: settings)
         }
     }
