@@ -241,6 +241,7 @@ struct FilesView: SwiftUI.View {
 }
 
 class UserSettings: ObservableObject {
+    @Published var consoleOutput: String = ""
     @Published var currentFile: FVFile? = nil
     private let fileManager = FileManager.default
     let objectWillChange = ObservableObjectPublisher()
@@ -292,6 +293,21 @@ class UserSettings: ObservableObject {
     }
 }
 
+
+struct TempOutputView: SwiftUI.View {
+    @State var settings:UserSettings
+    
+    // 2 sections on top of each other
+    // the top being where pixels can be rendered
+    // the bottom being console output
+    //
+    // Both of which are custom components
+    var body: some SwiftUI.View {
+        Text("Output")
+    }
+}
+
+
 struct FullEditorView: SwiftUI.View {
     @State var settings:UserSettings
     var body: some SwiftUI.View {
@@ -322,10 +338,14 @@ struct ContentView: SwiftUI.View {
                 Image(systemName: "list.dash")
                 Text("Editor" + ((settings.currentFile != nil) ? (" - " + settings.currentFile!.displayName) : ""))
             }.tag(0)
+            OutputConsoleView(settings: settings).tabItem {
+                Image(systemName: "list.dash")
+                Text("Output")
+            }.tag(1)
             FilesView(settings: settings, setEditorView: { self.selectedTab = 0 }).tabItem {
                 Image(systemName: "list.dash")
                 Text("Files")
-            }.tag(1)
+            }.tag(2)
         }
     }
 }
