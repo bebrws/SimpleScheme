@@ -11,8 +11,9 @@ import SwiftUI
 import Sourceful
 
 
-class EditorViewController: UIViewController, SyntaxTextViewDelegate {
+class EditorViewController: UIViewController, SyntaxTextViewDelegate, UITextViewDelegate {
     
+    var settings:UserSettings? = nil
     let fileBeingEdited:FVFile? = nil
     
     func lexerForSource(_ source: String) -> Lexer {
@@ -21,6 +22,10 @@ class EditorViewController: UIViewController, SyntaxTextViewDelegate {
     
     @IBOutlet var editorView: SyntaxTextView!
     let lexer = SwiftLexer()
+    
+    func didChangeText(_ syntaxTextView: SyntaxTextView) {
+        self.settings!.currentFileContents = editorView.text
+    }
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -59,6 +64,7 @@ class EditorViewController: UIViewController, SyntaxTextViewDelegate {
     
     convenience init?(coder: NSCoder, settings: UserSettings) {
         self.init(coder: coder)
+        self.settings = settings
     }
 }
 

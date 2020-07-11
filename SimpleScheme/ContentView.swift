@@ -103,7 +103,7 @@ struct DirectoryPopover: SwiftUI.View {
                             do {
                                 try FileManager.default.createDirectory(atPath: newDirString, withIntermediateDirectories: true, attributes: nil)
                             } catch {
-                                print(error.localizedDescription);
+                                print(error.localizedDescription)
                             }
                         }
                         
@@ -241,6 +241,7 @@ struct FilesView: SwiftUI.View {
 }
 
 class UserSettings: ObservableObject {
+    @Published var currentFileContents: String = ""
     @Published var consoleOutput: String = ""
     @Published var currentFile: FVFile? = nil
     private let fileManager = FileManager.default
@@ -314,7 +315,16 @@ struct FullEditorView: SwiftUI.View {
         VStack(alignment: .leading, spacing: 5.0) {
             HStack {
                 Button(action: {
-                    
+                    // SAve the file
+                    do {
+                        try self.settings.currentFileContents.write(to: self.settings.currentFile!.filePathURL, atomically: true, encoding: .utf8)
+                    } catch {
+                        print("Error saving file")
+                        print(error.localizedDescription)
+                    }
+                    // Then begin execution and jump to the console view
+                    // Before execution pip stdout
+                    // Start execution
                 }) {
                     HStack {
                         Image(systemName: "play")
