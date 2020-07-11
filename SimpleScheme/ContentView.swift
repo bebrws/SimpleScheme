@@ -243,6 +243,7 @@ struct FilesView: SwiftUI.View {
 class UserSettings: ObservableObject {
     @Published var currentFileContents: String = ""
     @Published var consoleOutput: String = ""
+    @Published var pipe: Pipe? = nil
     @Published var currentFile: FVFile? = nil
     private let fileManager = FileManager.default
     let objectWillChange = ObservableObjectPublisher()
@@ -311,6 +312,7 @@ struct TempOutputView: SwiftUI.View {
 
 struct FullEditorView: SwiftUI.View {
     @State var settings:UserSettings
+    var setOutputConsoleView: () -> Void
     var body: some SwiftUI.View {
         VStack(alignment: .leading, spacing: 5.0) {
             HStack {
@@ -322,9 +324,36 @@ struct FullEditorView: SwiftUI.View {
                         print("Error saving file")
                         print(error.localizedDescription)
                     }
-                    // Then begin execution and jump to the console view
-                    // Before execution pip stdout
-                    // Start execution
+                    
+                    // https://stackoverflow.com/questions/16391279/how-to-redirect-stdout-to-a-nstextview
+                    
+                    // Before execution pipe stdout
+
+                    //    Clear the pre existing console output
+                    self.settings.consoleOutput = ""
+                    
+                    if (self.settings.pipe == nil) {
+                        self.settings.pipe = Pipe()
+                        setvbuf(stdout, nil, _IONBF, 0)
+                        dup2(self.settings.pipe!.fileHandleForWriting.fileDescriptor,
+                            STDOUT_FILENO)
+                        self.settings.pipe!.fileHandleForReading.readabilityHandler = { handle in
+                            let data = handle.availableData
+                            let str = String(data: data, encoding: .ascii) ?? "<Non-ascii data of size\(data.count)>\n"
+                            DispatchQueue.main.async {
+                                self.settings.consoleOutput += str
+                            }
+                        }
+                    }
+                    
+                    // Execute the scheme script
+                    
+                    self.settings.currentFileContents.withCString { cstr in
+                        scheme(cstr)
+                    }
+                    
+                    // Then jump to the console view
+                    self.setOutputConsoleView()
                 }) {
                     HStack {
                         Image(systemName: "play")
@@ -344,7 +373,7 @@ struct ContentView: SwiftUI.View {
     @State private var selectedTab = 1
     var body: some SwiftUI.View {
         TabView(selection: $selectedTab) {
-            FullEditorView(settings: settings).tabItem {
+            FullEditorView(settings: settings, setOutputConsoleView: { self.selectedTab = 1 }).tabItem {
                 Image(systemName: "list.dash")
                 Text("Editor" + ((settings.currentFile != nil) ? (" - " + settings.currentFile!.displayName) : ""))
             }.tag(0)
