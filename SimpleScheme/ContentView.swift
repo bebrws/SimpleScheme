@@ -18,11 +18,11 @@ struct ContentView: SwiftUI.View {
     var body: some SwiftUI.View {
         TabView(selection: $selectedTab) {
             FullEditorView(settings: settings, setOutputConsoleView: { self.selectedTab = 1 }).tabItem {
-                Image(systemName: "list.dash")
+                Image(systemName: "keyboard")
                 Text("Editor" + ((settings.currentFile != nil) ? (" - " + settings.currentFile!.displayName) : ""))
             }.tag(0)
             OutputConsoleView(settings: settings).tabItem {
-                Image(systemName: "list.dash")
+                Image(systemName: "desktopcomputer")
                 Text("Output")
             }.tag(1)
             FilesView(settings: settings, setEditorView: { self.selectedTab = 0 }).tabItem {
