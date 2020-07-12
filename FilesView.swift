@@ -75,27 +75,69 @@ struct FileOrDirectoryItemView: SwiftUI.View {
     @ObservedObject var settings: UserSettings
     var file: FVFile
     var setEditorView: () -> Void
+    @State private var wasLongPressed: Bool = false
     
     var body: some SwiftUI.View {
-        file.isDirectory ?
-            Button(action: {
-                self.settings.currentDir = self.file.filePathURL
-            }) {
-                HStack {
-                    Image(systemName: "folder")
-                    Text(file.displayName)
+        HStack {
+            file.isDirectory ?
+                HStack(alignment: .bottom, spacing: 60.0) {
+                    Button(action: {
+                        self.settings.currentDir = self.file.filePathURL
+                    }) {
+                        HStack {
+                            Image(systemName: "folder")
+                            Text(file.displayName)
+                        }
+                    }
+                    Spacer()
+                    HStack(alignment: .bottom, spacing: 40.0) {
+                        Button(action: {
+                            
+                        }) {
+                            HStack {
+                                Image(systemName: "minus.circle")
+                            }
+                        }
+                        Button(action: {
+                            
+                        }) {
+                            HStack {
+                                Image(systemName: "pencil.circle")
+                            }
+                        }
+                    }
                 }
-            }
-        :
-            Button(action: {
-                self.settings.currentFile = self.file
-                self.setEditorView()
-            }) {
-                HStack {
-                    Image(systemName: "pencil")
-                    Text(file.displayName)
+            :
+                HStack(alignment: .bottom, spacing: 60.0) {
+                    Button(action: {
+                        self.settings.currentFile = self.file
+                        self.setEditorView()
+                    }) {
+                        HStack {
+                            Image(systemName: "doc")
+                            Text(file.displayName)
+                        }
+                    }
+                    Spacer()
+                    HStack(alignment: .bottom, spacing: 40.0) {
+                        Button(action: {
+                            
+                        }) {
+                            HStack {
+                                Image(systemName: "minus.circle")
+                            }
+                        }
+                        Button(action: {
+                            
+                        }) {
+                            HStack {
+                                Image(systemName: "pencil.circle")
+                            }
+                        }
+                    }
                 }
-            }
+                
+        }
     }
 }
 
