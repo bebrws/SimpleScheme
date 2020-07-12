@@ -317,39 +317,45 @@ struct FullEditorView: SwiftUI.View {
         VStack(alignment: .leading, spacing: 5.0) {
             HStack {
                 Button(action: {
-                    // SAve the file
-                    do {
-                        try self.settings.currentFileContents.write(to: self.settings.currentFile!.filePathURL, atomically: true, encoding: .utf8)
-                    } catch {
-                        print("Error saving file")
-                        print(error.localizedDescription)
-                    }
-                    
-                    // Before execution pipe stdout
-                    //    Clear the pre existing console output
-                    self.settings.consoleOutput = ""
-                    
-                    if (self.settings.pipe == nil) {
-                        self.settings.pipe = Pipe()
-                        setvbuf(stdout, nil, _IONBF, 0)
-                        dup2(self.settings.pipe!.fileHandleForWriting.fileDescriptor,
-                            STDOUT_FILENO)
-                        self.settings.pipe!.fileHandleForReading.readabilityHandler = { handle in
-                            let data = handle.availableData
-                            let str = String(data: data, encoding: .ascii) ?? "<Non-ascii data of size\(data.count)>\n"
-                            DispatchQueue.main.async {
-                                self.settings.consoleOutput += str
+                    if (self.settings?.currentFile != nil) {
+                        // Save the file
+                        do {
+                            try self.settings.currentFileContents.write(to: self.settings.currentFile!.filePathURL, atomically: true, encoding: .utf8)
+                        } catch {
+                            print("Error saving file")
+                            print(error.localizedDescription)
+                        }
+                        
+                        // Before execution pipe stdout
+                        //    Clear the pre existing console output
+                        self.settings.consoleOutput = ""
+                        
+                        if (self.settings.pipe == nil) {
+                            self.settings.pipe = Pipe()
+                            setvbuf(stdout, nil, _IONBF, 0)
+                            dup2(self.settings.pipe!.fileHandleForWriting.fileDescriptor,
+                                STDOUT_FILENO)
+                            self.settings.pipe!.fileHandleForReading.readabilityHandler = { handle in
+                                let data = handle.availableData
+                                let str = String(data: data, encoding: .ascii) ?? "<Non-ascii data of size\(data.count)>\n"
+                                DispatchQueue.main.async {
+                                    self.settings.consoleOutput += str
+                                }
                             }
                         }
+                        
+                        // Execute the scheme script
+                        self.settings.currentFileContents.withCString { cstr in
+                            scheme(cstr)
+                        }
+                        
+                        // Then jump to the console view
+                        self.setOutputConsoleView()
+                    } else {
+                        let alert = UIAlertController(title: "No File Selected", message: "Please use the files tab to select a file to edit.", preferredStyle: .alert)
+                        alert.addAction(UIAlertAction(title: "Got it", style: .default, handler: nil))
+                        self.present(alert, animated: true)
                     }
-                    
-                    // Execute the scheme script
-                    self.settings.currentFileContents.withCString { cstr in
-                        scheme(cstr)
-                    }
-                    
-                    // Then jump to the console view
-                    self.setOutputConsoleView()
                 }) {
                     HStack {
                         Image(systemName: "play")
@@ -366,7 +372,7 @@ struct FullEditorView: SwiftUI.View {
 struct ContentView: SwiftUI.View {
     @State private var selection = 0
     @State private var settings:UserSettings = UserSettings()
-    @State private var selectedTab = 1
+    @State private var selectedTab = 2
     var body: some SwiftUI.View {
         TabView(selection: $selectedTab) {
             FullEditorView(settings: settings, setOutputConsoleView: { self.selectedTab = 1 }).tabItem {

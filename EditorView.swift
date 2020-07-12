@@ -24,7 +24,14 @@ class EditorViewController: UIViewController, SyntaxTextViewDelegate, UITextView
     let lexer = SwiftLexer()
     
     func didChangeText(_ syntaxTextView: SyntaxTextView) {
-        self.settings!.currentFileContents = editorView.text
+        if (self.settings?.currentFile == nil) {
+            let alert = UIAlertController(title: "No File Selected", message: "Please use the files tab to select a file to edit.", preferredStyle: .alert)
+            alert.addAction(UIAlertAction(title: "Got it", style: .default, handler: nil))
+            self.present(alert, animated: true)
+        }
+        if (self.settings?.currentFile != nil) {
+            self.settings!.currentFileContents = editorView.text
+        }
     }
     
     override func viewDidLoad() {
