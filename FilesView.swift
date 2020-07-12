@@ -71,6 +71,33 @@ struct FilePopover: SwiftUI.View {
     }
 }
 
+struct FileOrDirectoryItemView: SwiftUI.View {
+    @ObservedObject var settings: UserSettings
+    var file: FVFile
+    var setEditorView: () -> Void
+    
+    var body: some SwiftUI.View {
+        file.isDirectory ?
+            Button(action: {
+                self.settings.currentDir = self.file.filePathURL
+            }) {
+                HStack {
+                    Image(systemName: "folder")
+                    Text(file.displayName)
+                }
+            }
+        :
+            Button(action: {
+                self.settings.currentFile = self.file
+                self.setEditorView()
+            }) {
+                HStack {
+                    Image(systemName: "pencil")
+                    Text(file.displayName)
+                }
+            }
+    }
+}
 
 struct ListFilesView: SwiftUI.View {
         @State private var files: [FVFile] = []
@@ -84,26 +111,7 @@ struct ListFilesView: SwiftUI.View {
     
     var body: some SwiftUI.View {
         List(settings.files, id: \.self, selection: $selection) { file in
-            file.isDirectory ?
-                Button(action: {
-                    self.settings.currentDir = file.filePathURL
-                }) {
-                    HStack {
-                        Image(systemName: "folder")
-                        Text(file.displayName)
-                    }
-                }
-            :
-                Button(action: {
-                    self.settings.currentFile = file
-                    self.setEditorView()
-                }) {
-                    HStack {
-                        Image(systemName: "pencil")
-                        Text(file.displayName)
-                    }
-                }
-            
+            FileOrDirectoryItemView(settings: self.settings, file: file, setEditorView: self.setEditorView)
         }
 //        .environment(\.editMode, .constant(self.isEditing ? EditMode.active : EditMode.inactive)).animation(Animation.spring())
         
