@@ -32,7 +32,7 @@ struct DirectoryPopover: SwiftUI.View {
                                 print(error.localizedDescription)
                             }
                         }
-                        
+                        self.settings.currentDir = self.settings.currentDir
                     }) {
                         Text("Create Directory")
                     }
@@ -61,7 +61,7 @@ struct FilePopover: SwiftUI.View {
                         if !FileManager.default.fileExists(atPath: fileString) {
                             FileManager.default.createFile(atPath: fileString, contents: "".data(using: .utf8), attributes: nil)
                         }
-
+                        self.settings.currentDir = self.settings.currentDir
                     }) {
                         Text("Create File")
                     }
@@ -76,67 +76,126 @@ struct FileOrDirectoryItemView: SwiftUI.View {
     var file: FVFile
     var setEditorView: () -> Void
     @State private var wasLongPressed: Bool = false
+    @State private var showingRenameFileAlert: Bool = false
+    @State private var showingRenameDirectoryAlert: Bool = false
+    @State private var alertText: String = ""
+    
+    func createRenameCB(currentFile: FVFile) -> (() -> Void) {
+        return {
+            print("In rename callback")
+            var currentPath = currentFile.filePathURL.absoluteString
+            currentPath = currentPath.replacingOccurrences(of: "file://", with: "")
+            var newPath = currentFile.filePathURL.absoluteString
+            newPath = newPath.replacingOccurrences(of: "file://", with: "")
+            newPath = String(newPath[..<newPath.lastIndex(of: "/")!])
+            newPath += "/" + self.alertText
+            print("Renaming file/folder from:")
+            print(currentPath)
+            print("to:")
+            print(newPath)
+            var fileURL = currentFile.filePathURL
+            var rv = URLResourceValues()
+            rv.name = newPath
+            do {
+                try fileURL.setResourceValues(rv)
+            } catch {
+                print(error.localizedDescription)
+            }
+            
+    //                            newPath = newPath.substring(to: newPath.lastIndex(of: "/")!)
+    //                            do {
+    //                                try FileManager.default.moveItem(atPath: <#T##String#>, toPath: <#T##String#>)
+    //                            } catch {
+    //                                print(error.localizedDescription)
+    //                            }
+            self.settings.currentDir = self.settings.currentDir
+        }
+    }
     
     var body: some SwiftUI.View {
         HStack {
             file.isDirectory ?
                 HStack(alignment: .bottom, spacing: 60.0) {
-                    Button(action: {
-                        self.settings.currentDir = self.file.filePathURL
-                    }) {
+                    Button(action: { }) {
                         HStack {
                             Image(systemName: "folder")
                             Text(file.displayName)
                         }
                     }
+                    .frame(width: 160, height: 15, alignment: .leading)
+                    .onTapGesture {
+                        print("Selected folder")
+                        self.settings.currentDir = self.file.filePathURL
+                    }
                     Spacer()
-                    HStack(alignment: .bottom, spacing: 40.0) {
-                        Button(action: {
-                            
-                        }) {
+                    HStack {
+                        Button(action: {}) {
                             HStack {
                                 Image(systemName: "minus.circle")
                             }
+                        }.onTapGesture {
+                            print("Deleting folder")
+                            do {
+                                try FileManager.default.removeItem(at: self.file.filePathURL)
+                            } catch {
+                                print(error.localizedDescription)
+                            }
+                            self.settings.currentDir = self.settings.currentDir
                         }
-                        Button(action: {
-                            
-                        }) {
+                        Spacer()
+                        Button(action: {}) {
                             HStack {
                                 Image(systemName: "pencil.circle")
                             }
                         }
-                    }
+                        .onTapGesture {
+                            print("Renaming folder")
+                            self.settings.fileToRename = self.file
+                            self.showingRenameDirectoryAlert.toggle()
+                        }
+                    }.textFieldAlert(isShowing: self.$showingRenameDirectoryAlert, text: self.$alertText, title: "Alert!", callback: createRenameCB(currentFile: self.file))
                 }
             :
                 HStack(alignment: .bottom, spacing: 60.0) {
-                    Button(action: {
-                        self.settings.currentFile = self.file
-                        self.setEditorView()
-                    }) {
+                    Button(action: { }) {
                         HStack {
                             Image(systemName: "doc")
                             Text(file.displayName)
                         }
                     }
+                    .frame(width: 160, height: 15, alignment: .leading)
+                    .onTapGesture {
+                        print("Setting file")
+                        self.settings.currentFile = self.file
+                        self.setEditorView()
+                    }
                     Spacer()
-                    HStack(alignment: .bottom, spacing: 40.0) {
-                        Button(action: {
-                            
-                        }) {
+                    HStack {
+                        Button(action: { }) {
                             HStack {
                                 Image(systemName: "minus.circle")
                             }
+                        }.onTapGesture {
+                            print("Deleting file")
+                            do {
+                                try FileManager.default.removeItem(at: self.file.filePathURL)
+                            } catch {
+                                print(error.localizedDescription)
+                            }
+                            self.settings.currentDir = self.settings.currentDir
                         }
-                        Button(action: {
-                            
-                        }) {
+                        Spacer()
+                        Button(action: { }) {
                             HStack {
                                 Image(systemName: "pencil.circle")
                             }
+                        }.onTapGesture {
+                            print("Renaming file")
+                            self.settings.fileToRename = self.file
                         }
-                    }
+                    }.textFieldAlert(isShowing: self.$showingRenameFileAlert, text: self.$alertText, title: "Alert!", callback: createRenameCB(currentFile: self.file))
                 }
-                
+        
         }
     }
 }
@@ -145,7 +204,6 @@ struct ListFilesView: SwiftUI.View {
         @State private var files: [FVFile] = []
         @ObservedObject var settings: UserSettings
         var setEditorView: () -> Void
-//        @State var isEditing = false
         @State private var showNewDirectoryPopover = false
         @State private var showNewFilePopover = false
         @State private var showPopover = false
@@ -155,8 +213,6 @@ struct ListFilesView: SwiftUI.View {
         List(settings.files, id: \.self, selection: $selection) { file in
             FileOrDirectoryItemView(settings: self.settings, file: file, setEditorView: self.setEditorView)
         }
-//        .environment(\.editMode, .constant(self.isEditing ? EditMode.active : EditMode.inactive)).animation(Animation.spring())
-        
         .popover(
             isPresented: self.$showPopover,
             arrowEdge: .bottom
@@ -190,14 +246,6 @@ struct ListFilesView: SwiftUI.View {
             }) {
                 Image(systemName: "plus.square")
             }
-//            Button(action: {
-//                self.isEditing.toggle()
-//            }) {
-//                HStack {
-//                    Text(isEditing ? "Done" : "Edit")
-//                    Image(systemName: "pencil")
-//                }
-//            }
         })
     }
 }

@@ -56,7 +56,7 @@ class EditorViewController: UIViewController, SyntaxTextViewDelegate, UITextView
     func updateSettings(settings: UserSettings) {
         if (self.fileBeingEdited == settings.currentFile) {
             // No change
-        } else {
+        } else if (settings.currentFile != nil) {
             // File changed so re load data
             let fileDataContents = try! Data(contentsOf: settings.currentFile!.filePath as URL)
             let fileContentsString = String(data: fileDataContents, encoding: .utf8)

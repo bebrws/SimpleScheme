@@ -15,6 +15,7 @@ class UserSettings: ObservableObject {
     @Published var consoleOutput: String = ""
     @Published var pipe: Pipe? = nil
     @Published var currentFile: FVFile? = nil
+    @Published var fileToRename: FVFile? = nil
     private let fileManager = FileManager.default
     let objectWillChange = ObservableObjectPublisher()
     @Published var files = [FVFile]() {
