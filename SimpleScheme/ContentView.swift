@@ -353,7 +353,7 @@ struct FullEditorView: SwiftUI.View {
                 }) {
                     HStack {
                         Image(systemName: "play")
-                        Text("Run")
+                        Text("Save & Run")
                     }
                 }
             }.padding(.leading, 20.0)
