@@ -11,6 +11,7 @@
 		B14670B324B9AD7F0022CAFD /* GraphicsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B14670B224B9AD7F0022CAFD /* GraphicsView.swift */; };
 		B14670B524BA6EB30022CAFD /* SchemeSourceCodeTheme.swift in Sources */ = {isa = PBXBuildFile; fileRef = B14670B424BA6EB30022CAFD /* SchemeSourceCodeTheme.swift */; };
 		B159596A24B19E1700A4A5AA /* EditorView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B159596924B19E1700A4A5AA /* EditorView.swift */; };
+		B1649DA524BB42CB0008803F /* FullEditorView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1649DA424BB42CB0008803F /* FullEditorView.swift */; };
 		B1BC1C7024B0E363008D0B4D /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1BC1C6F24B0E363008D0B4D /* AppDelegate.swift */; };
 		B1BC1C7224B0E363008D0B4D /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1BC1C7124B0E363008D0B4D /* SceneDelegate.swift */; };
 		B1BC1C7424B0E363008D0B4D /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1BC1C7324B0E363008D0B4D /* ContentView.swift */; };
@@ -29,6 +30,7 @@
 		B14670B224B9AD7F0022CAFD /* GraphicsView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GraphicsView.swift; sourceTree = "<group>"; };
 		B14670B424BA6EB30022CAFD /* SchemeSourceCodeTheme.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SchemeSourceCodeTheme.swift; sourceTree = "<group>"; };
 		B159596924B19E1700A4A5AA /* EditorView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditorView.swift; sourceTree = "<group>"; };
+		B1649DA424BB42CB0008803F /* FullEditorView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FullEditorView.swift; sourceTree = "<group>"; };
 		B1BC1C6C24B0E363008D0B4D /* SimpleScheme.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SimpleScheme.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		B1BC1C6F24B0E363008D0B4D /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		B1BC1C7124B0E363008D0B4D /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -67,6 +69,7 @@
 				B14670B024B93D9C0022CAFD /* OutputView.swift */,
 				B14670B224B9AD7F0022CAFD /* GraphicsView.swift */,
 				B159596924B19E1700A4A5AA /* EditorView.swift */,
+				B1649DA424BB42CB0008803F /* FullEditorView.swift */,
 				B1BC1C8F24B11CCF008D0B4D /* SimpleScheme-Bridging-Header.h */,
 				B1BC1C8924B0E9BD008D0B4D /* Editor.storyboard */,
 				B1BC1C6E24B0E363008D0B4D /* SimpleScheme */,
@@ -197,6 +200,7 @@
 			files = (
 				B1BC1C9024B11CCF008D0B4D /* SimpleScheme-Bridging-Header.h in Sources */,
 				B1BC1C7024B0E363008D0B4D /* AppDelegate.swift in Sources */,
+				B1649DA524BB42CB0008803F /* FullEditorView.swift in Sources */,
 				B14670B324B9AD7F0022CAFD /* GraphicsView.swift in Sources */,
 				B159596A24B19E1700A4A5AA /* EditorView.swift in Sources */,
 				B14670B524BA6EB30022CAFD /* SchemeSourceCodeTheme.swift in Sources */,
