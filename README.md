@@ -9,3 +9,4 @@ I added some code in my forks ios branch for creating the entry point to the int
 
 I included the rusty_scheme license in this repo as well.
 
+This was meant to be a weekend project so I haven't put a ton of time into it. But I would like to follow better design practices if I get more time or drive to work on this project.
