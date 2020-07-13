@@ -29,6 +29,10 @@ struct ContentView: SwiftUI.View {
                 Image(systemName: "list.dash")
                 Text("Files")
             }.tag(2)
+            HelpView(settings: settings).tabItem {
+                Image(systemName: "questionmark")
+                Text("Help")
+            }.tag(3)
         }
     }
 }
