@@ -71,46 +71,57 @@ struct FilePopover: SwiftUI.View {
     }
 }
 
+struct RenamingPopover: SwiftUI.View {
+    @ObservedObject var settings: UserSettings
+    @State private var newFileName: String = ""
+    var hideCallback: () -> Void
+    var body: some SwiftUI.View {
+        VStack {
+            Text("File and Folder Reanming")
+            HStack {
+                VStack {
+                    TextField("Enter the new name", text: self.$newFileName)
+                }.padding(20)
+                VStack {
+                    Button(action: {
+                        var currentPath = self.settings.fileToRename!.filePathURL.absoluteString
+                        currentPath = currentPath.replacingOccurrences(of: "file://", with: "")
+                        var newPath = self.settings.fileToRename!.filePathURL.absoluteString
+                        newPath = newPath.replacingOccurrences(of: "file://", with: "")
+                        newPath = String(newPath[..<newPath.lastIndex(of: "/")!])
+                        newPath += "/" + self.newFileName
+
+                        print("Renaming file/folder from:")
+                        print(currentPath)
+                        print("to:")
+                        print(newPath)
+
+                        do {
+                            try FileManager.default.moveItem(atPath: currentPath, toPath: newPath)
+                        } catch {
+                            print(error.localizedDescription)
+                        }
+                        self.settings.currentDir = self.settings.currentDir
+                        if (self.settings.currentFile?.filePathURL.absoluteString.contains(self.settings.fileToRename!.filePathURL.absoluteString))! {
+                            self.settings.currentFile = nil
+                        }
+                        self.hideCallback()
+                    }) {
+                        Text("Rename File")
+                    }
+                }.padding(20)
+            }
+        }
+    }
+}
+
 struct FileOrDirectoryItemView: SwiftUI.View {
     @ObservedObject var settings: UserSettings
     var file: FVFile
     var setEditorView: () -> Void
     @State private var wasLongPressed: Bool = false
-    @State private var showingRenameFileAlert: Bool = false
-    @State private var showingRenameDirectoryAlert: Bool = false
+    @State private var showRenamingPopover: Bool = false
     @State private var alertText: String = ""
-    
-    func createRenameCB(currentFile: FVFile) -> (() -> Void) {
-        return {
-            print("In rename callback")
-            var currentPath = currentFile.filePathURL.absoluteString
-            currentPath = currentPath.replacingOccurrences(of: "file://", with: "")
-            var newPath = currentFile.filePathURL.absoluteString
-            newPath = newPath.replacingOccurrences(of: "file://", with: "")
-            newPath = String(newPath[..<newPath.lastIndex(of: "/")!])
-            newPath += "/" + self.alertText
-            print("Renaming file/folder from:")
-            print(currentPath)
-            print("to:")
-            print(newPath)
-            var fileURL = currentFile.filePathURL
-            var rv = URLResourceValues()
-            rv.name = newPath
-            do {
-                try fileURL.setResourceValues(rv)
-            } catch {
-                print(error.localizedDescription)
-            }
-            
-    //                            newPath = newPath.substring(to: newPath.lastIndex(of: "/")!)
-    //                            do {
-    //                                try FileManager.default.moveItem(atPath: <#T##String#>, toPath: <#T##String#>)
-    //                            } catch {
-    //                                print(error.localizedDescription)
-    //                            }
-            self.settings.currentDir = self.settings.currentDir
-        }
-    }
     
     var body: some SwiftUI.View {
         HStack {
@@ -122,18 +133,15 @@ struct FileOrDirectoryItemView: SwiftUI.View {
                             Text(file.displayName)
                         }
                     }
-                    .frame(width: 160, height: 15, alignment: .leading)
+                    .frame(width: 150, height: 15, alignment: .leading)
                     .onTapGesture {
                         print("Selected folder")
                         self.settings.currentDir = self.file.filePathURL
                     }
                     Spacer()
                     HStack {
-                        Button(action: {}) {
-                            HStack {
-                                Image(systemName: "minus.circle")
-                            }
-                        }.onTapGesture {
+                        Image(systemName: "minus.circle")
+                        .onTapGesture {
                             print("Deleting folder")
                             do {
                                 try FileManager.default.removeItem(at: self.file.filePathURL)
@@ -141,19 +149,16 @@ struct FileOrDirectoryItemView: SwiftUI.View {
                                 print(error.localizedDescription)
                             }
                             self.settings.currentDir = self.settings.currentDir
+                            self.settings.currentFile = nil
                         }
                         Spacer()
-                        Button(action: {}) {
-                            HStack {
-                                Image(systemName: "pencil.circle")
-                            }
-                        }
+                        Image(systemName: "pencil.circle")
                         .onTapGesture {
                             print("Renaming folder")
                             self.settings.fileToRename = self.file
-                            self.showingRenameDirectoryAlert.toggle()
+                            self.showRenamingPopover.toggle()
                         }
-                    }.textFieldAlert(isShowing: self.$showingRenameDirectoryAlert, text: self.$alertText, title: "Alert!", callback: createRenameCB(currentFile: self.file))
+                    }
                 }
             :
                 HStack(alignment: .bottom, spacing: 60.0) {
@@ -163,7 +168,7 @@ struct FileOrDirectoryItemView: SwiftUI.View {
                             Text(file.displayName)
                         }
                     }
-                    .frame(width: 160, height: 15, alignment: .leading)
+                    .frame(width: 150, height: 15, alignment: .leading)
                     .onTapGesture {
                         print("Setting file")
                         self.settings.currentFile = self.file
@@ -171,11 +176,8 @@ struct FileOrDirectoryItemView: SwiftUI.View {
                     }
                     Spacer()
                     HStack {
-                        Button(action: { }) {
-                            HStack {
-                                Image(systemName: "minus.circle")
-                            }
-                        }.onTapGesture {
+                        Image(systemName: "minus.circle")
+                        .onTapGesture {
                             print("Deleting file")
                             do {
                                 try FileManager.default.removeItem(at: self.file.filePathURL)
@@ -183,19 +185,24 @@ struct FileOrDirectoryItemView: SwiftUI.View {
                                 print(error.localizedDescription)
                             }
                             self.settings.currentDir = self.settings.currentDir
+                            self.settings.currentFile = nil
                         }
                         Spacer()
-                        Button(action: { }) {
-                            HStack {
-                                Image(systemName: "pencil.circle")
-                            }
-                        }.onTapGesture {
+                        Image(systemName: "pencil.circle")
+                        .onTapGesture {
                             print("Renaming file")
                             self.settings.fileToRename = self.file
+                            self.showRenamingPopover.toggle()
                         }
-                    }.textFieldAlert(isShowing: self.$showingRenameFileAlert, text: self.$alertText, title: "Alert!", callback: createRenameCB(currentFile: self.file))
+                    }
                 }
         
+        }
+        .popover(
+            isPresented: self.$showRenamingPopover,
+            arrowEdge: .bottom
+        ) {
+            RenamingPopover(settings: self.settings, hideCallback: { self.showRenamingPopover.toggle() })
         }
     }
 }
