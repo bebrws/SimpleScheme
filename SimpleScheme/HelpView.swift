@@ -45,6 +45,8 @@ display
 displayln
 print
 newline
+call/cc
+define-syntax-rule
 """
 
 let outputPage = """
@@ -239,7 +241,7 @@ struct HelpView: SwiftUI.View {
             Spacer()
             VStack {
                 Text("Help Page: " + String(Int(self.page)))
-                Slider(value: self.$page, in: 0...10.0, step: 1.0)
+                Slider(value: self.$page, in: 0...5.0, step: 1.0)
             }
         }
     }
