@@ -16,9 +16,10 @@
 		B1649DA924BB43540008803F /* FilesView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1649DA824BB43540008803F /* FilesView.swift */; };
 		B1649DAB24BB43820008803F /* FVFileType.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1649DAA24BB43820008803F /* FVFileType.swift */; };
 		B1649DAD24BB43A40008803F /* FVFile.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1649DAC24BB43A40008803F /* FVFile.swift */; };
-		B1649DAF24BB4EAF0008803F /* TextAlert.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1649DAE24BB4EAF0008803F /* TextAlert.swift */; };
+		B1649DAF24BB4EAF0008803F /* TextAlertViewExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1649DAE24BB4EAF0008803F /* TextAlertViewExtension.swift */; };
 		B1649DB124BBF8940008803F /* HelpView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1649DB024BBF8930008803F /* HelpView.swift */; };
 		B1649DB324BC08850008803F /* TextView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1649DB224BC08850008803F /* TextView.swift */; };
+		B1649DB624BE2AD60008803F /* SwiftDux in Frameworks */ = {isa = PBXBuildFile; productRef = B1649DB524BE2AD60008803F /* SwiftDux */; };
 		B1BC1C7024B0E363008D0B4D /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1BC1C6F24B0E363008D0B4D /* AppDelegate.swift */; };
 		B1BC1C7224B0E363008D0B4D /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1BC1C7124B0E363008D0B4D /* SceneDelegate.swift */; };
 		B1BC1C7424B0E363008D0B4D /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1BC1C7324B0E363008D0B4D /* ContentView.swift */; };
@@ -42,7 +43,7 @@
 		B1649DA824BB43540008803F /* FilesView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FilesView.swift; sourceTree = "<group>"; };
 		B1649DAA24BB43820008803F /* FVFileType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FVFileType.swift; sourceTree = "<group>"; };
 		B1649DAC24BB43A40008803F /* FVFile.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FVFile.swift; sourceTree = "<group>"; };
-		B1649DAE24BB4EAF0008803F /* TextAlert.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TextAlert.swift; sourceTree = "<group>"; };
+		B1649DAE24BB4EAF0008803F /* TextAlertViewExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TextAlertViewExtension.swift; sourceTree = "<group>"; };
 		B1649DB024BBF8930008803F /* HelpView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HelpView.swift; sourceTree = "<group>"; };
 		B1649DB224BC08850008803F /* TextView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TextView.swift; sourceTree = "<group>"; };
 		B1BC1C6C24B0E363008D0B4D /* SimpleScheme.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SimpleScheme.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -57,7 +58,7 @@
 		B1BC1C8C24B11B29008D0B4D /* libscheme.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libscheme.a; path = SimpleScheme/libscheme.a; sourceTree = "<group>"; };
 		B1BC1C8D24B11B46008D0B4D /* scheme.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = scheme.h; sourceTree = "<group>"; };
 		B1BC1C8E24B11B6A008D0B4D /* SimpleScheme-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "SimpleScheme-Bridging-Header.h"; sourceTree = "<group>"; };
-		B1BC1C8F24B11CCF008D0B4D /* SimpleScheme-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = "SimpleScheme-Bridging-Header.h"; path = "SimpleScheme/SimpleScheme-Bridging-Header.h"; sourceTree = "<group>"; };
+		B1BC1C8F24B11CCF008D0B4D /* SimpleScheme-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "SimpleScheme-Bridging-Header.h"; sourceTree = "<group>"; };
 		B1BC1CA624B13CF2008D0B4D /* SimpleScheme.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = SimpleScheme.entitlements; sourceTree = "<group>"; };
 		B1BC1CA724B150D5008D0B4D /* CloudKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CloudKit.framework; path = System/Library/Frameworks/CloudKit.framework; sourceTree = SDKROOT; };
 /* End PBXFileReference section */
@@ -69,6 +70,7 @@
 			files = (
 				B1BC1CA824B150D5008D0B4D /* CloudKit.framework in Frameworks */,
 				B1BC1C9124B11ECC008D0B4D /* libscheme.a in Frameworks */,
+				B1649DB624BE2AD60008803F /* SwiftDux in Frameworks */,
 				B1BC1C8524B0E3E8008D0B4D /* Sourceful in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -76,22 +78,43 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		B1BC1C6324B0E363008D0B4D = {
+		B1649DB724BE2AFD0008803F /* Views */ = {
 			isa = PBXGroup;
 			children = (
+				B1BC1C7324B0E363008D0B4D /* ContentView.swift */,
+				B1649DB024BBF8930008803F /* HelpView.swift */,
 				B1649DB224BC08850008803F /* TextView.swift */,
-				B1649DAE24BB4EAF0008803F /* TextAlert.swift */,
-				B1649DA624BB43370008803F /* UserSettings.swift */,
+				B1649DAE24BB4EAF0008803F /* TextAlertViewExtension.swift */,
 				B1649DA824BB43540008803F /* FilesView.swift */,
-				B1649DAA24BB43820008803F /* FVFileType.swift */,
-				B1649DAC24BB43A40008803F /* FVFile.swift */,
-				B14670B424BA6EB30022CAFD /* SchemeSourceCodeTheme.swift */,
 				B14670B024B93D9C0022CAFD /* OutputView.swift */,
 				B14670B224B9AD7F0022CAFD /* GraphicsView.swift */,
 				B159596924B19E1700A4A5AA /* EditorView.swift */,
 				B1649DA424BB42CB0008803F /* FullEditorView.swift */,
-				B1BC1C8F24B11CCF008D0B4D /* SimpleScheme-Bridging-Header.h */,
-				B1BC1C8924B0E9BD008D0B4D /* Editor.storyboard */,
+			);
+			path = Views;
+			sourceTree = "<group>";
+		};
+		B1649DB824BE2B290008803F /* Entities */ = {
+			isa = PBXGroup;
+			children = (
+				B1649DA624BB43370008803F /* UserSettings.swift */,
+				B1649DAA24BB43820008803F /* FVFileType.swift */,
+				B1649DAC24BB43A40008803F /* FVFile.swift */,
+			);
+			path = Entities;
+			sourceTree = "<group>";
+		};
+		B1649DB924BE2B380008803F /* Sourceful */ = {
+			isa = PBXGroup;
+			children = (
+				B14670B424BA6EB30022CAFD /* SchemeSourceCodeTheme.swift */,
+			);
+			path = Sourceful;
+			sourceTree = "<group>";
+		};
+		B1BC1C6324B0E363008D0B4D = {
+			isa = PBXGroup;
+			children = (
 				B1BC1C6E24B0E363008D0B4D /* SimpleScheme */,
 				B1BC1C6D24B0E363008D0B4D /* Products */,
 				B1BC1C8B24B11B29008D0B4D /* Frameworks */,
@@ -109,12 +132,15 @@
 		B1BC1C6E24B0E363008D0B4D /* SimpleScheme */ = {
 			isa = PBXGroup;
 			children = (
+				B1649DB924BE2B380008803F /* Sourceful */,
+				B1649DB824BE2B290008803F /* Entities */,
+				B1649DB724BE2AFD0008803F /* Views */,
+				B1BC1C8924B0E9BD008D0B4D /* Editor.storyboard */,
 				B1BC1CA624B13CF2008D0B4D /* SimpleScheme.entitlements */,
+				B1BC1C8F24B11CCF008D0B4D /* SimpleScheme-Bridging-Header.h */,
 				B1BC1C8D24B11B46008D0B4D /* scheme.h */,
 				B1BC1C6F24B0E363008D0B4D /* AppDelegate.swift */,
 				B1BC1C7124B0E363008D0B4D /* SceneDelegate.swift */,
-				B1BC1C7324B0E363008D0B4D /* ContentView.swift */,
-				B1649DB024BBF8930008803F /* HelpView.swift */,
 				B1BC1C7524B0E365008D0B4D /* Assets.xcassets */,
 				B1BC1C7A24B0E365008D0B4D /* Editor.storyboard */,
 				B1BC1C7D24B0E365008D0B4D /* Info.plist */,
@@ -159,6 +185,7 @@
 			name = SimpleScheme;
 			packageProductDependencies = (
 				B1BC1C8424B0E3E8008D0B4D /* Sourceful */,
+				B1649DB524BE2AD60008803F /* SwiftDux */,
 			);
 			productName = SimpleScheme;
 			productReference = B1BC1C6C24B0E363008D0B4D /* SimpleScheme.app */;
@@ -190,6 +217,7 @@
 			mainGroup = B1BC1C6324B0E363008D0B4D;
 			packageReferences = (
 				B1BC1C8324B0E3E8008D0B4D /* XCRemoteSwiftPackageReference "Sourceful" */,
+				B1649DB424BE2AD60008803F /* XCRemoteSwiftPackageReference "SwiftDux" */,
 			);
 			productRefGroup = B1BC1C6D24B0E363008D0B4D /* Products */;
 			projectDirPath = "";
@@ -222,7 +250,7 @@
 				B1BC1C9024B11CCF008D0B4D /* SimpleScheme-Bridging-Header.h in Sources */,
 				B1BC1C7024B0E363008D0B4D /* AppDelegate.swift in Sources */,
 				B1649DA524BB42CB0008803F /* FullEditorView.swift in Sources */,
-				B1649DAF24BB4EAF0008803F /* TextAlert.swift in Sources */,
+				B1649DAF24BB4EAF0008803F /* TextAlertViewExtension.swift in Sources */,
 				B1649DAD24BB43A40008803F /* FVFile.swift in Sources */,
 				B1649DA724BB43370008803F /* UserSettings.swift in Sources */,
 				B14670B324B9AD7F0022CAFD /* GraphicsView.swift in Sources */,
@@ -454,6 +482,14 @@
 /* End XCConfigurationList section */
 
 /* Begin XCRemoteSwiftPackageReference section */
+		B1649DB424BE2AD60008803F /* XCRemoteSwiftPackageReference "SwiftDux" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/StevenLambion/SwiftDux";
+			requirement = {
+				kind = revision;
+				revision = 18372f86b79445386f6d871cfa5b2fa0f3d3e94a;
+			};
+		};
 		B1BC1C8324B0E3E8008D0B4D /* XCRemoteSwiftPackageReference "Sourceful" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/twostraws/Sourceful";
@@ -465,6 +501,11 @@
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
+		B1649DB524BE2AD60008803F /* SwiftDux */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = B1649DB424BE2AD60008803F /* XCRemoteSwiftPackageReference "SwiftDux" */;
+			productName = SwiftDux;
+		};
 		B1BC1C8424B0E3E8008D0B4D /* Sourceful */ = {
 			isa = XCSwiftPackageProductDependency;
 			package = B1BC1C8324B0E3E8008D0B4D /* XCRemoteSwiftPackageReference "Sourceful" */;
