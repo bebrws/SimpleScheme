@@ -12,7 +12,7 @@ import SwiftUI
 struct GraphicsView: UIViewRepresentable {
     typealias UIViewType = UIView
     
-    @ObservedObject var settings: UserSettings
+    @EnvironmentObject var store: Store<SimpleSchemeState>
     
     func makeUIView(context: Context) -> UIView {
         let mainView = UIView()

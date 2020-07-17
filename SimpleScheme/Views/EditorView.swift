@@ -12,8 +12,7 @@ import Sourceful
 
 
 class EditorViewController: UIViewController, SyntaxTextViewDelegate, UITextViewDelegate {
-    
-    var settings:UserSettings? = nil
+    var store: Store<SimpleSchemeState>?
     let fileBeingEdited:FVFile? = nil
     
     func lexerForSource(_ source: String) -> Lexer {
@@ -24,13 +23,13 @@ class EditorViewController: UIViewController, SyntaxTextViewDelegate, UITextView
     let lexer = SwiftLexer()
     
     func didChangeText(_ syntaxTextView: SyntaxTextView) {
-        if (self.settings?.currentFile == nil) {
+        if (store!.state.currentFile == nil) {
             let alert = UIAlertController(title: "No File Selected", message: "Please use the files tab to select a file to edit.", preferredStyle: .alert)
             alert.addAction(UIAlertAction(title: "Got it", style: .default, handler: nil))
             self.present(alert, animated: true)
         }
-        if (self.settings?.currentFile != nil) {
-            self.settings!.currentFileContents = editorView.text
+        if (store!.state.currentFile != nil) {
+            store!.state.currentFileContents = editorView.text
         }
     }
     
@@ -53,12 +52,12 @@ class EditorViewController: UIViewController, SyntaxTextViewDelegate, UITextView
         super.viewWillAppear(animated)
     }
     
-    func updateSettings(settings: UserSettings) {
-        if (self.fileBeingEdited == settings.currentFile) {
+    func update(store: Store<SimpleSchemeState>) {
+        if (self.fileBeingEdited == store.state.currentFile) {
             // No change
-        } else if (settings.currentFile != nil) {
+        } else if (store.state.currentFile != nil) {
             // File changed so re load data
-            let fileDataContents = try! Data(contentsOf: settings.currentFile!.filePath as URL)
+            let fileDataContents = try! Data(contentsOf: store.state.currentFile!.filePath as URL)
             let fileContentsString = String(data: fileDataContents, encoding: .utf8)
             self.editorView.text = fileContentsString!
                         
@@ -68,21 +67,21 @@ class EditorViewController: UIViewController, SyntaxTextViewDelegate, UITextView
     required init?(coder: NSCoder) {
         super.init(coder: coder)
     }
-    
-    convenience init?(coder: NSCoder, settings: UserSettings) {
-        self.init(coder: coder)
-        self.settings = settings
+
+    required init?(coder: NSCoder, store: Store<SimpleSchemeState>) {
+        self.store = store
+        super.init(coder: coder)
     }
 }
 
 struct EditorView: UIViewControllerRepresentable {
-    @ObservedObject var settings: UserSettings
+    @EnvironmentObject var store: Store<SimpleSchemeState>
     
 func makeUIViewController(context: Context) -> EditorViewController {
     let storyboard = UIStoryboard(name: "Editor", bundle: nil)
 
     let viewController = storyboard.instantiateViewController(identifier: "Editor", creator: { (coder) in
-        let editorViewController = EditorViewController(coder: coder, settings: self.settings)
+        let editorViewController = EditorViewController(coder: coder, store: self.store)
     return editorViewController
     }) as! EditorViewController
     
@@ -91,7 +90,7 @@ func makeUIViewController(context: Context) -> EditorViewController {
     
     func updateUIViewController(_ uiViewController: EditorViewController, context: Context) {
         let e = uiViewController as EditorViewController
-        e.updateSettings(settings: settings)
+        e.update(store: self.store)
     }
 
 }

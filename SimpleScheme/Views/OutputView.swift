@@ -39,7 +39,7 @@ import SwiftUI
 struct OutputConsoleView: UIViewRepresentable {
     typealias UIViewType = UITextView
     
-    @ObservedObject var settings: UserSettings
+    @EnvironmentObject var store: Store<SimpleSchemeState>
     
     func makeUIView(context: Context) -> UITextView {
         let textView = UITextView()
@@ -50,7 +50,7 @@ struct OutputConsoleView: UIViewRepresentable {
     
     func updateUIView(_ uiView: UITextView, context: Context) {
         let textView = uiView as UITextView
-        textView.text = $settings.consoleOutput.wrappedValue
+        textView.text = self.store.state.consoleOutput
     }
 
 }

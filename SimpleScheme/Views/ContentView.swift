@@ -11,25 +11,27 @@ import MobileCoreServices
 import Sourceful
 import Combine
 
+
 struct ContentView: SwiftUI.View {
+    @EnvironmentObject var store: Store<SimpleSchemeState>
+    
     @State private var selection = 0
-    @State private var settings:UserSettings = UserSettings()
     @State private var selectedTab = 2
     var body: some SwiftUI.View {
         TabView(selection: $selectedTab) {
-            FullEditorView(settings: settings, setOutputConsoleView: { self.selectedTab = 1 }).tabItem {
+            FullEditorView(setOutputConsoleView: { self.selectedTab = 1 }).tabItem {
                 Image(systemName: "keyboard")
-                Text("Editor" + ((settings.currentFile != nil) ? (" - " + settings.currentFile!.displayName) : ""))
+                Text("Editor" + ((self.store.state.currentFile != nil) ? (" - " + self.store.state.currentFile!.displayName) : ""))
             }.tag(0)
-            OutputConsoleView(settings: settings).tabItem {
+            OutputConsoleView().tabItem {
                 Image(systemName: "desktopcomputer")
                 Text("Output")
             }.tag(1)
-            FilesView(settings: settings, setEditorView: { self.selectedTab = 0 }).tabItem {
+            FilesView(setEditorView: { self.selectedTab = 0 }).tabItem {
                 Image(systemName: "list.dash")
                 Text("Files")
             }.tag(2)
-            HelpView(settings: settings).tabItem {
+            HelpView().tabItem {
                 Image(systemName: "questionmark")
                 Text("Help")
             }.tag(3)

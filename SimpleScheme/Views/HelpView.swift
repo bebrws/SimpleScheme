@@ -208,7 +208,8 @@ let threadPage = """
 
 
 struct HelpView: SwiftUI.View {
-    @State var settings:UserSettings
+    @EnvironmentObject var store: Store<SimpleSchemeState>
+    
     @State private var page:Double = 0.0
     var body: some SwiftUI.View {
         VStack {
