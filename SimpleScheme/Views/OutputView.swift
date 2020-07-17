@@ -36,7 +36,7 @@ import SwiftUI
 //    }
 //}
 
-struct OutputConsoleView: UIViewRepresentable {
+struct TextConsoleView: UIViewRepresentable {
     typealias UIViewType = UITextView
     
     @EnvironmentObject var store: Store<SimpleSchemeState>
@@ -53,4 +53,39 @@ struct OutputConsoleView: UIViewRepresentable {
         textView.text = self.store.state.consoleOutput
     }
 
+}
+
+//var pixels: [PixelData] = [PixelData]()
+
+
+struct OutputView: SwiftUI.View {
+    @EnvironmentObject var store: Store<SimpleSchemeState>
+    
+    var body: some SwiftUI.View {
+        VStack {
+            Text("Bitmap Output:")
+            BitmapView()
+            .padding()
+            .border(Color.black)
+            Text("Text Output:")
+            TextConsoleView()
+            .padding()
+            .border(Color.purple)
+        }
+        .onAppear {
+            for y in 0..<Int(PIXELS_HEIGHT) {
+                for x in 0..<Int(PIXELS_WIDTH) {
+                    let idx = (Int(PIXELS_WIDTH) * y + x) * 4
+                    //red
+                    pixels[idx] = 10
+                    //green
+                    pixels[idx+1] = 100
+                    // blue
+                    pixels[idx+2] = 100
+                    // Alpha channel:
+                    pixels[idx+3] = 255
+                }
+            }
+        }
+    }
 }

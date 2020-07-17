@@ -42,6 +42,8 @@
 		B1F1E81B24C1067600569072 /* ConnectedView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1F1E81124C1067600569072 /* ConnectedView.swift */; };
 		B1F1E81C24C1067600569072 /* Reducer.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1F1E81224C1067600569072 /* Reducer.swift */; };
 		B1F1E81D24C1067600569072 /* Action.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1F1E81324C1067600569072 /* Action.swift */; };
+		B1F1E82024C12C3900569072 /* BitmapView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1F1E81F24C12C3900569072 /* BitmapView.swift */; };
+		B1F1E82224C12C5B00569072 /* PixelData.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1F1E82124C12C5B00569072 /* PixelData.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -85,6 +87,8 @@
 		B1F1E81124C1067600569072 /* ConnectedView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = ConnectedView.swift; path = SimpleScheme/SwiftUIFlux/connector/ConnectedView.swift; sourceTree = "<group>"; };
 		B1F1E81224C1067600569072 /* Reducer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = Reducer.swift; path = SimpleScheme/SwiftUIFlux/protocols/Reducer.swift; sourceTree = "<group>"; };
 		B1F1E81324C1067600569072 /* Action.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = Action.swift; path = SimpleScheme/SwiftUIFlux/protocols/Action.swift; sourceTree = "<group>"; };
+		B1F1E81F24C12C3900569072 /* BitmapView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BitmapView.swift; sourceTree = "<group>"; };
+		B1F1E82124C12C5B00569072 /* PixelData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PixelData.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -105,6 +109,8 @@
 			isa = PBXGroup;
 			children = (
 				B1BC1C7324B0E363008D0B4D /* ContentView.swift */,
+				B1F1E81F24C12C3900569072 /* BitmapView.swift */,
+				B1F1E82124C12C5B00569072 /* PixelData.swift */,
 				B1649DB024BBF8930008803F /* HelpView.swift */,
 				B1649DB224BC08850008803F /* TextView.swift */,
 				B1649DAE24BB4EAF0008803F /* TextAlertViewExtension.swift */,
@@ -298,6 +304,7 @@
 				B1F1E81A24C1067600569072 /* FluxState.swift in Sources */,
 				B1F1E81B24C1067600569072 /* ConnectedView.swift in Sources */,
 				B1F1E81C24C1067600569072 /* Reducer.swift in Sources */,
+				B1F1E82024C12C3900569072 /* BitmapView.swift in Sources */,
 				B1F1E81D24C1067600569072 /* Action.swift in Sources */,
 				B1BC1C9024B11CCF008D0B4D /* SimpleScheme-Bridging-Header.h in Sources */,
 				B1BC1C7024B0E363008D0B4D /* AppDelegate.swift in Sources */,
@@ -306,6 +313,7 @@
 				B1649DAD24BB43A40008803F /* FVFile.swift in Sources */,
 				B1649DA724BB43370008803F /* SimpleSchemeState.swift in Sources */,
 				B14670B324B9AD7F0022CAFD /* GraphicsView.swift in Sources */,
+				B1F1E82224C12C5B00569072 /* PixelData.swift in Sources */,
 				B159596A24B19E1700A4A5AA /* EditorView.swift in Sources */,
 				B14670B524BA6EB30022CAFD /* SchemeSourceCodeTheme.swift in Sources */,
 				B1649DBB24BE2BB90008803F /* SimpleSchemeReducer.swift in Sources */,

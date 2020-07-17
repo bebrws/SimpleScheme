@@ -23,7 +23,7 @@ struct ContentView: SwiftUI.View {
                 Image(systemName: "keyboard")
                 Text("Editor" + ((self.store.state.currentFile != nil) ? (" - " + self.store.state.currentFile!.displayName) : ""))
             }.tag(0)
-            OutputConsoleView().tabItem {
+            OutputView().tabItem {
                 Image(systemName: "desktopcomputer")
                 Text("Output")
             }.tag(1)
