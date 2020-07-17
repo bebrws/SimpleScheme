@@ -83,7 +83,7 @@ struct OutputView: SwiftUI.View {
                     // blue
                     pixels[idx+2] = 100
                     // Alpha channel:
-                    pixels[idx+3] = 255
+                    pixels[idx+3] = 120
                 }
             }
         }

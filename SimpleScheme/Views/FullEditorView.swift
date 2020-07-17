@@ -14,6 +14,7 @@ import Combine
 // WARNING - Global:
 
 let pipe = Pipe() // TODO: Move to a store?
+let pipeErr = Pipe() // TODO: Move to a store?
 
 
 struct FullEditorView: SwiftUI.View {
@@ -39,10 +40,20 @@ struct FullEditorView: SwiftUI.View {
                         
                         if (!self.store.state.isPipeCreated) {
                             setvbuf(stdout, nil, _IONBF, 0)
-                            
                             dup2(pipe.fileHandleForWriting.fileDescriptor,
                                 STDOUT_FILENO)
                             pipe.fileHandleForReading.readabilityHandler = { handle in
+                                let data = handle.availableData
+                                let str = String(data: data, encoding: .ascii) ?? "<Non-ascii data of size\(data.count)>\n"
+                                DispatchQueue.main.async {
+                                    self.store.state.consoleOutput += str
+                                }
+                            }
+                            
+                            setvbuf(stderr, nil, _IONBF, 0)
+                            dup2(pipeErr.fileHandleForWriting.fileDescriptor,
+                                STDERR_FILENO)
+                            pipeErr.fileHandleForReading.readabilityHandler = { handle in
                                 let data = handle.availableData
                                 let str = String(data: data, encoding: .ascii) ?? "<Non-ascii data of size\(data.count)>\n"
                                 DispatchQueue.main.async {
@@ -53,7 +64,8 @@ struct FullEditorView: SwiftUI.View {
                         
                         // Execute the scheme script
                         self.store.state.currentFileContents.withCString { cstr in
-                            scheme(cstr)
+//                            var pri = Optional(UnsafePointer<Int8>(pixels))
+                            scheme(cstr, pixels)
                         }
                         
                         // Then jump to the console view

@@ -21,6 +21,7 @@
 		B1649DB324BC08850008803F /* TextView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1649DB224BC08850008803F /* TextView.swift */; };
 		B1649DBB24BE2BB90008803F /* SimpleSchemeReducer.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1649DBA24BE2BB90008803F /* SimpleSchemeReducer.swift */; };
 		B1649DBD24BE2C0B0008803F /* SimpleSchemeActions.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1649DBC24BE2C0B0008803F /* SimpleSchemeActions.swift */; };
+		B19A9E3224C156B700FE0886 /* libscheme.a in Frameworks */ = {isa = PBXBuildFile; fileRef = B19A9E3124C156B700FE0886 /* libscheme.a */; };
 		B1BC1C7024B0E363008D0B4D /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1BC1C6F24B0E363008D0B4D /* AppDelegate.swift */; };
 		B1BC1C7224B0E363008D0B4D /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1BC1C7124B0E363008D0B4D /* SceneDelegate.swift */; };
 		B1BC1C7424B0E363008D0B4D /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1BC1C7324B0E363008D0B4D /* ContentView.swift */; };
@@ -30,7 +31,6 @@
 		B1BC1C8524B0E3E8008D0B4D /* Sourceful in Frameworks */ = {isa = PBXBuildFile; productRef = B1BC1C8424B0E3E8008D0B4D /* Sourceful */; };
 		B1BC1C8A24B0E9BD008D0B4D /* Editor.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B1BC1C8924B0E9BD008D0B4D /* Editor.storyboard */; };
 		B1BC1C9024B11CCF008D0B4D /* SimpleScheme-Bridging-Header.h in Sources */ = {isa = PBXBuildFile; fileRef = B1BC1C8F24B11CCF008D0B4D /* SimpleScheme-Bridging-Header.h */; };
-		B1BC1C9124B11ECC008D0B4D /* libscheme.a in Frameworks */ = {isa = PBXBuildFile; fileRef = B1BC1C8C24B11B29008D0B4D /* libscheme.a */; };
 		B1BC1CA824B150D5008D0B4D /* CloudKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B1BC1CA724B150D5008D0B4D /* CloudKit.framework */; };
 		B1F1E81424C1067600569072 /* AsyncActionsMiddleware.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1F1E80A24C1067500569072 /* AsyncActionsMiddleware.swift */; };
 		B1F1E81524C1067600569072 /* Store.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1F1E80B24C1067500569072 /* Store.swift */; };
@@ -61,6 +61,8 @@
 		B1649DB224BC08850008803F /* TextView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TextView.swift; sourceTree = "<group>"; };
 		B1649DBA24BE2BB90008803F /* SimpleSchemeReducer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SimpleSchemeReducer.swift; sourceTree = "<group>"; };
 		B1649DBC24BE2C0B0008803F /* SimpleSchemeActions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SimpleSchemeActions.swift; sourceTree = "<group>"; };
+		B19A9E2F24C1564600FE0886 /* libscheme.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libscheme.a; path = "../rusty_scheme/target/aarch64-apple-ios/release/libscheme.a"; sourceTree = "<group>"; };
+		B19A9E3124C156B700FE0886 /* libscheme.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libscheme.a; path = ../rusty_scheme/libscheme.a; sourceTree = "<group>"; };
 		B1BC1C6C24B0E363008D0B4D /* SimpleScheme.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SimpleScheme.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		B1BC1C6F24B0E363008D0B4D /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		B1BC1C7124B0E363008D0B4D /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -96,8 +98,8 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				B19A9E3224C156B700FE0886 /* libscheme.a in Frameworks */,
 				B1BC1CA824B150D5008D0B4D /* CloudKit.framework in Frameworks */,
-				B1BC1C9124B11ECC008D0B4D /* libscheme.a in Frameworks */,
 				B1BC1C8524B0E3E8008D0B4D /* Sourceful in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -194,6 +196,8 @@
 		B1BC1C8B24B11B29008D0B4D /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				B19A9E2F24C1564600FE0886 /* libscheme.a */,
+				B19A9E3124C156B700FE0886 /* libscheme.a */,
 				B1BC1CA724B150D5008D0B4D /* CloudKit.framework */,
 				B1BC1C8C24B11B29008D0B4D /* libscheme.a */,
 			);
