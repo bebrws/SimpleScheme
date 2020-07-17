@@ -10,6 +10,8 @@
 		B14670B124B93D9C0022CAFD /* OutputView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B14670B024B93D9C0022CAFD /* OutputView.swift */; };
 		B14670B324B9AD7F0022CAFD /* GraphicsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B14670B224B9AD7F0022CAFD /* GraphicsView.swift */; };
 		B14670B524BA6EB30022CAFD /* SchemeSourceCodeTheme.swift in Sources */ = {isa = PBXBuildFile; fileRef = B14670B424BA6EB30022CAFD /* SchemeSourceCodeTheme.swift */; };
+		B15228BD24C1EED70059117B /* libchicken.a in Frameworks */ = {isa = PBXBuildFile; fileRef = B15228BC24C1EED70059117B /* libchicken.a */; };
+		B15228C224C1FD080059117B /* chickenrun.c in Sources */ = {isa = PBXBuildFile; fileRef = B15228C124C1FD080059117B /* chickenrun.c */; };
 		B159596A24B19E1700A4A5AA /* EditorView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B159596924B19E1700A4A5AA /* EditorView.swift */; };
 		B1649DA524BB42CB0008803F /* FullEditorView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1649DA424BB42CB0008803F /* FullEditorView.swift */; };
 		B1649DA724BB43370008803F /* SimpleSchemeState.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1649DA624BB43370008803F /* SimpleSchemeState.swift */; };
@@ -21,7 +23,6 @@
 		B1649DB324BC08850008803F /* TextView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1649DB224BC08850008803F /* TextView.swift */; };
 		B1649DBB24BE2BB90008803F /* SimpleSchemeReducer.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1649DBA24BE2BB90008803F /* SimpleSchemeReducer.swift */; };
 		B1649DBD24BE2C0B0008803F /* SimpleSchemeActions.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1649DBC24BE2C0B0008803F /* SimpleSchemeActions.swift */; };
-		B19A9E3224C156B700FE0886 /* libscheme.a in Frameworks */ = {isa = PBXBuildFile; fileRef = B19A9E3124C156B700FE0886 /* libscheme.a */; };
 		B1BC1C7024B0E363008D0B4D /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1BC1C6F24B0E363008D0B4D /* AppDelegate.swift */; };
 		B1BC1C7224B0E363008D0B4D /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1BC1C7124B0E363008D0B4D /* SceneDelegate.swift */; };
 		B1BC1C7424B0E363008D0B4D /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1BC1C7324B0E363008D0B4D /* ContentView.swift */; };
@@ -32,6 +33,7 @@
 		B1BC1C8A24B0E9BD008D0B4D /* Editor.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B1BC1C8924B0E9BD008D0B4D /* Editor.storyboard */; };
 		B1BC1C9024B11CCF008D0B4D /* SimpleScheme-Bridging-Header.h in Sources */ = {isa = PBXBuildFile; fileRef = B1BC1C8F24B11CCF008D0B4D /* SimpleScheme-Bridging-Header.h */; };
 		B1BC1CA824B150D5008D0B4D /* CloudKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B1BC1CA724B150D5008D0B4D /* CloudKit.framework */; };
+		B1DBF81D24C1940A00CDE2D6 /* libiconv.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = B1DBF81C24C1940A00CDE2D6 /* libiconv.tbd */; };
 		B1F1E81424C1067600569072 /* AsyncActionsMiddleware.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1F1E80A24C1067500569072 /* AsyncActionsMiddleware.swift */; };
 		B1F1E81524C1067600569072 /* Store.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1F1E80B24C1067500569072 /* Store.swift */; };
 		B1F1E81624C1067600569072 /* StoreProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1F1E80C24C1067500569072 /* StoreProvider.swift */; };
@@ -50,6 +52,11 @@
 		B14670B024B93D9C0022CAFD /* OutputView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OutputView.swift; sourceTree = "<group>"; };
 		B14670B224B9AD7F0022CAFD /* GraphicsView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GraphicsView.swift; sourceTree = "<group>"; };
 		B14670B424BA6EB30022CAFD /* SchemeSourceCodeTheme.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SchemeSourceCodeTheme.swift; sourceTree = "<group>"; };
+		B15228BC24C1EED70059117B /* libchicken.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libchicken.a; path = SimpleScheme/libchicken.a; sourceTree = "<group>"; };
+		B15228BE24C1EF5A0059117B /* chicken-config.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "chicken-config.h"; sourceTree = "<group>"; };
+		B15228BF24C1EF5A0059117B /* chicken.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = chicken.h; sourceTree = "<group>"; };
+		B15228C024C1FD080059117B /* chickenrun.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = chickenrun.h; sourceTree = "<group>"; };
+		B15228C124C1FD080059117B /* chickenrun.c */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.c; path = chickenrun.c; sourceTree = "<group>"; };
 		B159596924B19E1700A4A5AA /* EditorView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditorView.swift; sourceTree = "<group>"; };
 		B1649DA424BB42CB0008803F /* FullEditorView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FullEditorView.swift; sourceTree = "<group>"; };
 		B1649DA624BB43370008803F /* SimpleSchemeState.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SimpleSchemeState.swift; sourceTree = "<group>"; };
@@ -73,11 +80,15 @@
 		B1BC1C7D24B0E365008D0B4D /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		B1BC1C8924B0E9BD008D0B4D /* Editor.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Editor.storyboard; sourceTree = "<group>"; };
 		B1BC1C8C24B11B29008D0B4D /* libscheme.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libscheme.a; path = SimpleScheme/libscheme.a; sourceTree = "<group>"; };
-		B1BC1C8D24B11B46008D0B4D /* scheme.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = scheme.h; sourceTree = "<group>"; };
 		B1BC1C8E24B11B6A008D0B4D /* SimpleScheme-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "SimpleScheme-Bridging-Header.h"; sourceTree = "<group>"; };
 		B1BC1C8F24B11CCF008D0B4D /* SimpleScheme-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "SimpleScheme-Bridging-Header.h"; sourceTree = "<group>"; };
 		B1BC1CA624B13CF2008D0B4D /* SimpleScheme.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = SimpleScheme.entitlements; sourceTree = "<group>"; };
 		B1BC1CA724B150D5008D0B4D /* CloudKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CloudKit.framework; path = System/Library/Frameworks/CloudKit.framework; sourceTree = SDKROOT; };
+		B1DBF81624C193EF00CDE2D6 /* librktio.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = librktio.a; path = SimpleScheme/librktio.a; sourceTree = "<group>"; };
+		B1DBF81724C193F000CDE2D6 /* libracket.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libracket.a; path = SimpleScheme/libracket.a; sourceTree = "<group>"; };
+		B1DBF81824C193F000CDE2D6 /* libmzgc.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libmzgc.a; path = SimpleScheme/libmzgc.a; sourceTree = "<group>"; };
+		B1DBF81C24C1940A00CDE2D6 /* libiconv.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libiconv.tbd; path = usr/lib/libiconv.tbd; sourceTree = SDKROOT; };
+		B1DBF81E24C196A100CDE2D6 /* libracket.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libracket.a; path = ../../racketLipoLibs/libracket.a; sourceTree = "<group>"; };
 		B1F1E80824C1065700569072 /* SwiftUIFlux */ = {isa = PBXFileReference; lastKnownFileType = folder; path = SwiftUIFlux; sourceTree = "<group>"; };
 		B1F1E80A24C1067500569072 /* AsyncActionsMiddleware.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = AsyncActionsMiddleware.swift; path = SimpleScheme/SwiftUIFlux/middleware/AsyncActionsMiddleware.swift; sourceTree = "<group>"; };
 		B1F1E80B24C1067500569072 /* Store.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = Store.swift; path = SimpleScheme/SwiftUIFlux/Store.swift; sourceTree = "<group>"; };
@@ -98,7 +109,8 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				B19A9E3224C156B700FE0886 /* libscheme.a in Frameworks */,
+				B15228BD24C1EED70059117B /* libchicken.a in Frameworks */,
+				B1DBF81D24C1940A00CDE2D6 /* libiconv.tbd in Frameworks */,
 				B1BC1CA824B150D5008D0B4D /* CloudKit.framework in Frameworks */,
 				B1BC1C8524B0E3E8008D0B4D /* Sourceful in Frameworks */,
 			);
@@ -170,9 +182,12 @@
 				B1BC1C8924B0E9BD008D0B4D /* Editor.storyboard */,
 				B1BC1CA624B13CF2008D0B4D /* SimpleScheme.entitlements */,
 				B1BC1C8F24B11CCF008D0B4D /* SimpleScheme-Bridging-Header.h */,
-				B1BC1C8D24B11B46008D0B4D /* scheme.h */,
 				B1BC1C6F24B0E363008D0B4D /* AppDelegate.swift */,
 				B1BC1C7124B0E363008D0B4D /* SceneDelegate.swift */,
+				B15228BE24C1EF5A0059117B /* chicken-config.h */,
+				B15228C024C1FD080059117B /* chickenrun.h */,
+				B15228C124C1FD080059117B /* chickenrun.c */,
+				B15228BF24C1EF5A0059117B /* chicken.h */,
 				B1BC1C7524B0E365008D0B4D /* Assets.xcassets */,
 				B1BC1C7A24B0E365008D0B4D /* Editor.storyboard */,
 				B1BC1C7D24B0E365008D0B4D /* Info.plist */,
@@ -196,6 +211,12 @@
 		B1BC1C8B24B11B29008D0B4D /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				B15228BC24C1EED70059117B /* libchicken.a */,
+				B1DBF81E24C196A100CDE2D6 /* libracket.a */,
+				B1DBF81C24C1940A00CDE2D6 /* libiconv.tbd */,
+				B1DBF81824C193F000CDE2D6 /* libmzgc.a */,
+				B1DBF81724C193F000CDE2D6 /* libracket.a */,
+				B1DBF81624C193EF00CDE2D6 /* librktio.a */,
 				B19A9E2F24C1564600FE0886 /* libscheme.a */,
 				B19A9E3124C156B700FE0886 /* libscheme.a */,
 				B1BC1CA724B150D5008D0B4D /* CloudKit.framework */,
@@ -307,6 +328,7 @@
 				B1F1E81924C1067600569072 /* StoreConnector.swift in Sources */,
 				B1F1E81A24C1067600569072 /* FluxState.swift in Sources */,
 				B1F1E81B24C1067600569072 /* ConnectedView.swift in Sources */,
+				B15228C224C1FD080059117B /* chickenrun.c in Sources */,
 				B1F1E81C24C1067600569072 /* Reducer.swift in Sources */,
 				B1F1E82024C12C3900569072 /* BitmapView.swift in Sources */,
 				B1F1E81D24C1067600569072 /* Action.swift in Sources */,
@@ -475,6 +497,10 @@
 				DEVELOPMENT_TEAM = J224A9FKGZ;
 				ENABLE_BITCODE = NO;
 				ENABLE_PREVIEWS = YES;
+				HEADER_SEARCH_PATHS = (
+					"$(PROJECT_DIR)/SimpleScheme/racket/include",
+					"$(PROJECT_DIR)/SimpleScheme/racket/",
+				);
 				INFOPLIST_FILE = SimpleScheme/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
@@ -505,6 +531,10 @@
 				DEVELOPMENT_TEAM = J224A9FKGZ;
 				ENABLE_BITCODE = NO;
 				ENABLE_PREVIEWS = YES;
+				HEADER_SEARCH_PATHS = (
+					"$(PROJECT_DIR)/SimpleScheme/racket/include",
+					"$(PROJECT_DIR)/SimpleScheme/racket/",
+				);
 				INFOPLIST_FILE = SimpleScheme/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",

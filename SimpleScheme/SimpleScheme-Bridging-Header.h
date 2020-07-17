@@ -9,6 +9,7 @@
 #ifndef SimpleScheme_Bridging_Header_h_h
 #define SimpleScheme_Bridging_Header_h_h
 
-#include "scheme.h"
+#include "chicken.h"
+#include "chickenrun.h"
 
 #endif /* SimpleScheme_Bridging_Header_h_h */

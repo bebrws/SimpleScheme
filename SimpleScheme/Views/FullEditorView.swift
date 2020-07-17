@@ -63,9 +63,17 @@ struct FullEditorView: SwiftUI.View {
                         }
                         
                         // Execute the scheme script
+                        var result = UnsafeMutablePointer<Int>.allocate(capacity: 1)
+                        
                         self.store.state.currentFileContents.withCString { cstr in
 //                            var pri = Optional(UnsafePointer<Int8>(pixels))
-                            scheme(cstr, pixels)
+//                            DispatchQueue.main.async {
+//                                scheme(cstr, pixels)
+                                // CHICKEN_eval_string(char *str, C_word *result)
+                            
+                            chickenrun(cstr)
+                            
+//                            }
                         }
                         
                         // Then jump to the console view

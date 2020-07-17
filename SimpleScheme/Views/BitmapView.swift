@@ -53,8 +53,7 @@ struct BitmapView: UIViewRepresentable {
         let newImageView = UIImageView(frame: CGRect(x:0, y:0, width:300, height:300));
         newImageView.image = self.drawPixelArray(imageView: newImageView)
         
-        Timer.scheduledTimer(withTimeInterval: 0.01, repeats: true) { timer in
-            print("image updated")
+        Timer.scheduledTimer(withTimeInterval: 0.1, repeats: true) { timer in
             newImageView.image = self.drawPixelArray(imageView: newImageView)
         }
 
@@ -64,6 +63,7 @@ struct BitmapView: UIViewRepresentable {
     
     func updateUIView(_ uiView: UIImageView, context: Context) {
         print("Update BitmapView")
+        uiView.image = self.drawPixelArray(imageView: uiView)
     }
     
 
