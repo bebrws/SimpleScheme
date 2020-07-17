@@ -65,13 +65,24 @@ struct FullEditorView: SwiftUI.View {
                         // Execute the scheme script
                         var result = UnsafeMutablePointer<Int>.allocate(capacity: 1)
                         
+//                        print("runnign:")
+//                        print(self.store.state.currentFileContents)
                         self.store.state.currentFileContents.withCString { cstr in
 //                            var pri = Optional(UnsafePointer<Int8>(pixels))
 //                            DispatchQueue.main.async {
 //                                scheme(cstr, pixels)
                                 // CHICKEN_eval_string(char *str, C_word *result)
-                            setpixels(pixels)
+                            setpixelcb({ (x: Int32, y: Int32, r: UInt8, g: UInt8, b: UInt8, a: UInt8) in
+                                print("Set pixel start!!!")
+//                                pixels[Int(((x+300*y)*4)+0)] = r;
+//                                pixels[Int(((x+300*y)*4)+1)] = g;
+//                                pixels[Int(((x+300*y)*4)+2)] = b;
+//                                pixels[Int(((x+300*y)*4)+3)] = a;
+//                                print("Set pixel!!!")
+                            })
+                                print("After setup")
                             chickenrun(cstr)
+                                print("After chickenrun")
                             
 //                            }
                         }

@@ -39,7 +39,7 @@ import SwiftUI
 
 let PIXELS_WIDTH = 300
 let PIXELS_HEIGHT = 300
-var pixels = UnsafeMutablePointer<Int8>.allocate(capacity: PIXELS_WIDTH*PIXELS_HEIGHT*4)
+var pixels = UnsafeMutablePointer<UInt8>.allocate(capacity: PIXELS_WIDTH*PIXELS_HEIGHT*4)
 
 
 struct BitmapView: UIViewRepresentable {
