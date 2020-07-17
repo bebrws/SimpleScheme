@@ -12,4 +12,6 @@
 #include "chicken.h"
 #include "chickenrun.h"
 
+//static void setpixels(char *newpixels);
+
 #endif /* SimpleScheme_Bridging_Header_h_h */

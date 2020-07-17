@@ -30,6 +30,8 @@
 #ifndef ___CHICKEN
 #define ___CHICKEN
 
+void setpixels(char *newpixels);
+
 #define C_MAJOR_VERSION   5
 #define C_MINOR_VERSION   2
 

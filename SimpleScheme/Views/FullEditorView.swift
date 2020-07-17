@@ -70,7 +70,7 @@ struct FullEditorView: SwiftUI.View {
 //                            DispatchQueue.main.async {
 //                                scheme(cstr, pixels)
                                 // CHICKEN_eval_string(char *str, C_word *result)
-                            
+                            setpixels(pixels)
                             chickenrun(cstr)
                             
 //                            }
