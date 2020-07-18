@@ -111,10 +111,33 @@ struct FullEditorView: SwiftUI.View {
                             })
                         }
                         
-                        self.store.state.currentFileContents.split(whereSeparator: \.isNewline).forEach({ aLine in
-                            
-                            chickenrun(String(aLine))
-                        })
+
+                        
+                        
+                        let fileContentsWithoutNewlines = self.store.state.currentFileContents.replacingOccurrences(of: "\n", with: " ")
+                         
+                        var bstr = "";
+                        var cnt = 0;
+                        fileContentsWithoutNewlines.forEach { c in
+                            if (c == ")") {
+                                bstr.append(c)
+                                cnt -= 1
+                                if (cnt == 0) {
+                                    chickenrun(bstr)
+                                    bstr = ""
+                                }
+                            } else if (c == "(") {
+                                bstr.append(c)
+                                cnt += 1
+                            } else {
+                                bstr.append(c)
+                            }
+                        }
+
+                        if (bstr.count > 0) {
+                            chickenrun(bstr)
+                        }
+                        
                         
                         // Then jump to the console view
                         self.setOutputConsoleView()
