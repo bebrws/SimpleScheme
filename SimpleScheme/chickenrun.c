@@ -26,7 +26,7 @@ int chickenrunread(const char *readstr) {
 
     C_word resess;
     C_word readess = CHICKEN_read(readstr, &resess);
-    printf("\readess: %s\n", readess);
+//    printf("\readess: %s\n", readess);
     
     return 0;
 }
@@ -41,7 +41,7 @@ int chickenrunfile(const char *filename) {
 
     
     C_word ess = CHICKEN_load(filename);
-    printf("\nfileess: %s\n", ess);
+//    printf("\nfileess: %s\n", ess);
     
     return 0;
 }
@@ -58,7 +58,7 @@ int chickenrun(const char *strToRun) {
 //    print("k: " + String(k))
     char resultstr[10000];
     C_word ess = CHICKEN_eval_string_to_string(strToRun, &resultstr, 999);
-    printf("\ness: %s\n", resultstr);
+//    printf("\ness: %s\n", resultstr);
     
     CHICKEN_yield();
     
