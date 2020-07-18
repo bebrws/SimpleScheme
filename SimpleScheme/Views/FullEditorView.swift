@@ -12,10 +12,14 @@ import Combine
 
 
 // WARNING - Global:
-
+// TODO: Cleanup
+var strCopy: String = ""
+var pixelCallbackNotSet: Bool = true
 let pipe = Pipe() // TODO: Move to a store?
 let pipeErr = Pipe() // TODO: Move to a store?
 
+
+var timeoutHasElapsed = true
 
 struct FullEditorView: SwiftUI.View {
     @EnvironmentObject var store: Store<SimpleSchemeState>
@@ -25,6 +29,11 @@ struct FullEditorView: SwiftUI.View {
         VStack(alignment: .leading, spacing: 5.0) {
             HStack {
                 Button(action: {
+                if (timeoutHasElapsed) {
+                    timeoutHasElapsed = false;
+                    DispatchQueue.main.asyncAfter(deadline: .now() + 1, execute: {
+                        timeoutHasElapsed = true;
+                    })
                     if (self.store.state.currentFile != nil) {
                         // Save the file
                         do {
@@ -65,33 +74,54 @@ struct FullEditorView: SwiftUI.View {
                         // Execute the scheme script
                         var result = UnsafeMutablePointer<Int>.allocate(capacity: 1)
                         
-//                        print("runnign:")
-//                        print(self.store.state.currentFileContents)
-                        self.store.state.currentFileContents.withCString { cstr in
-//                            var pri = Optional(UnsafePointer<Int8>(pixels))
-//                            DispatchQueue.main.async {
-//                                scheme(cstr, pixels)
-                                // CHICKEN_eval_string(char *str, C_word *result)
+                        if (pixelCallbackNotSet) {
+                            pixelCallbackNotSet = false
                             setpixelcb({ (x: Int32, y: Int32, r: UInt8, g: UInt8, b: UInt8, a: UInt8) in
-                                print("Set pixel start!!!")
-//                                pixels[Int(((x+300*y)*4)+0)] = r;
-//                                pixels[Int(((x+300*y)*4)+1)] = g;
-//                                pixels[Int(((x+300*y)*4)+2)] = b;
-//                                pixels[Int(((x+300*y)*4)+3)] = a;
-//                                print("Set pixel!!!")
-                            })
-                                print("After setup")
-                            chickenrun(cstr)
-                                print("After chickenrun")
+                                
+                                // Clearing the screen due to out of bounds?
+                                if ((x < 0 || x >= PIXELS_WIDTH) || (y < 0 || y >= PIXELS_HEIGHT)) {
+                                    // Then its a clear screen request
+                                    for y in 0..<Int(PIXELS_HEIGHT) {
+                                       for x in 0..<Int(PIXELS_WIDTH) {
+                                           let idx = (Int(PIXELS_WIDTH) * y + x) * 4
+                                           //red
+                                           pixels[idx] = 0
+                                           //green
+                                           pixels[idx+1] = 0
+                                           // blue
+                                           pixels[idx+2] = 0
+                                           // Alpha channel:
+                                           pixels[idx+3] = 0
+                                       }
+                                   }
+                                // Or drawing a pixel?
+                                } else {
                             
-//                            }
+                                    let idx = (Int32(PIXELS_WIDTH) * y + x) * 4
+                                            //red
+                                    pixels[Int(idx)] = r
+                                            //green
+                                    pixels[Int(idx)+1] = g
+                                            // blue
+                                    pixels[Int(idx)+2] = b
+                                            // Alpha channel:
+                                    pixels[Int(idx)+3] = 255 // TODO: CHANGE THIS TO BE ALPHA
+//                                    print("%d %d %d %d", r,g,b,a)
+                                }
+                            })
                         }
+                        
+                        self.store.state.currentFileContents.split(whereSeparator: \.isNewline).forEach({ aLine in
+                            
+                            chickenrun(String(aLine))
+                        })
                         
                         // Then jump to the console view
                         self.setOutputConsoleView()
                     } else {
                         print("No file selected")
                     }
+                }
                 }) {
                     HStack {
                         Image(systemName: "play")

@@ -32,7 +32,6 @@
 #define ___CHICKEN
 
 void setpixelcb(void (*newcb)(int, int, uint8_t, uint8_t, uint8_t, uint8_t));
-// void setpixels(char *newpixels);
 
 #define C_MAJOR_VERSION   5
 #define C_MINOR_VERSION   2

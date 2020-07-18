@@ -12,5 +12,7 @@
 #include <stdio.h>
 
 int chickenrun(const char *strToRun);
+int chickenrunfile(const char *filename);
+int chickenrunread(const char *readstr);
 
 #endif /* chickenrun_h */

@@ -10,7 +10,8 @@
 		B14670B124B93D9C0022CAFD /* OutputView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B14670B024B93D9C0022CAFD /* OutputView.swift */; };
 		B14670B324B9AD7F0022CAFD /* GraphicsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B14670B224B9AD7F0022CAFD /* GraphicsView.swift */; };
 		B14670B524BA6EB30022CAFD /* SchemeSourceCodeTheme.swift in Sources */ = {isa = PBXBuildFile; fileRef = B14670B424BA6EB30022CAFD /* SchemeSourceCodeTheme.swift */; };
-		B15228BD24C1EED70059117B /* libchicken.a in Frameworks */ = {isa = PBXBuildFile; fileRef = B15228BC24C1EED70059117B /* libchicken.a */; };
+		B14CAB0624C28A0C006B241A /* libchicken.a in Frameworks */ = {isa = PBXBuildFile; fileRef = B15228BC24C1EED70059117B /* libchicken.a */; };
+		B14CAB0B24C2A683006B241A /* DrawWithRecursion.scm.md in Resources */ = {isa = PBXBuildFile; fileRef = B14CAB0A24C2A683006B241A /* DrawWithRecursion.scm.md */; };
 		B15228C224C1FD080059117B /* chickenrun.c in Sources */ = {isa = PBXBuildFile; fileRef = B15228C124C1FD080059117B /* chickenrun.c */; };
 		B159596A24B19E1700A4A5AA /* EditorView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B159596924B19E1700A4A5AA /* EditorView.swift */; };
 		B1649DA524BB42CB0008803F /* FullEditorView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1649DA424BB42CB0008803F /* FullEditorView.swift */; };
@@ -52,6 +53,9 @@
 		B14670B024B93D9C0022CAFD /* OutputView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OutputView.swift; sourceTree = "<group>"; };
 		B14670B224B9AD7F0022CAFD /* GraphicsView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GraphicsView.swift; sourceTree = "<group>"; };
 		B14670B424BA6EB30022CAFD /* SchemeSourceCodeTheme.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SchemeSourceCodeTheme.swift; sourceTree = "<group>"; };
+		B14CAB0824C2A5CA006B241A /* README.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; name = README.md; path = SchemeDemos/README.md; sourceTree = "<group>"; };
+		B14CAB0924C2A5D9006B241A /* DrawLine.scm.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = DrawLine.scm.md; sourceTree = "<group>"; };
+		B14CAB0A24C2A683006B241A /* DrawWithRecursion.scm.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; path = DrawWithRecursion.scm.md; sourceTree = "<group>"; };
 		B15228BC24C1EED70059117B /* libchicken.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libchicken.a; path = SimpleScheme/libchicken.a; sourceTree = "<group>"; };
 		B15228BE24C1EF5A0059117B /* chicken-config.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "chicken-config.h"; sourceTree = "<group>"; };
 		B15228BF24C1EF5A0059117B /* chicken.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = chicken.h; sourceTree = "<group>"; };
@@ -109,7 +113,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				B15228BD24C1EED70059117B /* libchicken.a in Frameworks */,
+				B14CAB0624C28A0C006B241A /* libchicken.a in Frameworks */,
 				B1DBF81D24C1940A00CDE2D6 /* libiconv.tbd in Frameworks */,
 				B1BC1CA824B150D5008D0B4D /* CloudKit.framework in Frameworks */,
 				B1BC1C8524B0E3E8008D0B4D /* Sourceful in Frameworks */,
@@ -119,6 +123,15 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		B14CAB0724C2A59E006B241A /* SchemeDemos */ = {
+			isa = PBXGroup;
+			children = (
+				B14CAB0924C2A5D9006B241A /* DrawLine.scm.md */,
+				B14CAB0A24C2A683006B241A /* DrawWithRecursion.scm.md */,
+			);
+			path = SchemeDemos;
+			sourceTree = "<group>";
+		};
 		B1649DB724BE2AFD0008803F /* Views */ = {
 			isa = PBXGroup;
 			children = (
@@ -157,6 +170,8 @@
 		B1BC1C6324B0E363008D0B4D = {
 			isa = PBXGroup;
 			children = (
+				B14CAB0824C2A5CA006B241A /* README.md */,
+				B14CAB0724C2A59E006B241A /* SchemeDemos */,
 				B1F1E81E24C1068700569072 /* FilesAddedToCompileSourcesList */,
 				B1BC1C6E24B0E363008D0B4D /* SimpleScheme */,
 				B1BC1C6D24B0E363008D0B4D /* Products */,
@@ -307,6 +322,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				B1BC1C7C24B0E365008D0B4D /* Editor.storyboard in Resources */,
+				B14CAB0B24C2A683006B241A /* DrawWithRecursion.scm.md in Resources */,
 				B1BC1C7924B0E365008D0B4D /* Preview Assets.xcassets in Resources */,
 				B1BC1C7624B0E365008D0B4D /* Assets.xcassets in Resources */,
 				B1BC1C8A24B0E9BD008D0B4D /* Editor.storyboard in Resources */,

@@ -40,7 +40,7 @@ import SwiftUI
 let PIXELS_WIDTH = 300
 let PIXELS_HEIGHT = 300
 var pixels = UnsafeMutablePointer<UInt8>.allocate(capacity: PIXELS_WIDTH*PIXELS_HEIGHT*4)
-
+let pixelsSerialQueue = DispatchQueue(label: "pixels.serial.queue")
 
 struct BitmapView: UIViewRepresentable {
     typealias UIViewType = UIImageView
@@ -53,9 +53,13 @@ struct BitmapView: UIViewRepresentable {
         let newImageView = UIImageView(frame: CGRect(x:0, y:0, width:300, height:300));
         newImageView.image = self.drawPixelArray(imageView: newImageView)
         
-        Timer.scheduledTimer(withTimeInterval: 0.1, repeats: true) { timer in
-            newImageView.image = self.drawPixelArray(imageView: newImageView)
-        }
+//        Timer.scheduledTimer(withTimeInterval: 0.1, repeats: true) { timer in
+//            DispatchQueue.main.async {
+//                newImageView.image =  nil
+//                newImageView.image = self.drawPixelArray(imageView: newImageView)
+//                newImageView.setNeedsDisplay()
+//            }
+//        }
 
         
         return newImageView
@@ -63,7 +67,11 @@ struct BitmapView: UIViewRepresentable {
     
     func updateUIView(_ uiView: UIImageView, context: Context) {
         print("Update BitmapView")
-        uiView.image = self.drawPixelArray(imageView: uiView)
+//        DispatchQueue.main.async {
+//            uiView.image =  nil
+//            uiView.image = self.drawPixelArray(imageView: uiView)
+//            uiView.setNeedsDisplay()
+//        }
     }
     
 
